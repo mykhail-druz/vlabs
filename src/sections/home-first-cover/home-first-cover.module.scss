@@ -1,0 +1,110 @@
+@import '@/styles/_mixins.scss';
+@import '@/styles/_colors.scss';
+
+.homeContent {
+  margin: 0 2%;
+
+  @include tabletAndBeyondView() {
+    margin: 0 5%;
+  }
+
+  @include desktopAndBeyondView() {
+    margin: 0 10%;
+  }
+}
+
+.homeGridContainer {
+  display: grid;
+  row-gap: 3vh;
+  grid-template-areas:
+    'homeCoverImage'
+    'homeTitle'
+    'homeParagraph'
+    'homeContactButton';
+  justify-items: center;
+  align-items: center;
+
+  @include tabletAndBeyondView() {
+    grid-template-areas:
+      'homeTitle homeCoverImage'
+      'homeParagraph homeCoverImage'
+      'homeContactButton homeCoverImage';
+    justify-items: start;
+    column-gap: 1vw;
+  }
+}
+
+.homeCoverImage {
+  grid-area: homeCoverImage;
+}
+
+.homeTitle {
+  grid-area: homeTitle;
+}
+
+.homeParagraph {
+  grid-area: homeParagraph;
+
+  @include desktopAndBeyondView() {
+    width: 80%;
+  }
+}
+
+.homeContactButton {
+  grid-area: homeContactButton;
+}
+
+.homeCoverImage img {
+  width: 307.76px;
+  height: 249.79px;
+  border-radius: 21px;
+
+  @include tabletAndBeyondView() {
+    width: 340px;
+    height: 322px;
+  }
+
+  @include desktopAndBeyondView() {
+    width: 501px;
+    height: 477.22px;
+  }
+}
+
+.homeTitle h1 {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 43px;
+  text-align: center;
+  color: $font-color-one;
+
+  @include tabletAndBeyondView() {
+    text-align: left;
+    font-size: 63px;
+    line-height: 71px;
+  }
+
+  @include desktopAndBeyondView() {
+    text-align: left;
+    font-size: 75px;
+    line-height: 60px;
+  }
+}
+
+.homeTitle h1 span {
+  color: $font-color-two;
+}
+
+.homeParagraph p {
+  font-family: var(--font-roboto);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21.6px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: $font-color-one;
+
+  @include tabletAndBeyondView() {
+    text-align: left;
+  }
+}

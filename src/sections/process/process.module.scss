@@ -1,0 +1,121 @@
+@import '@/styles/_mixins.scss';
+@import '@/styles/_colors.scss';
+
+.processCardGridContainerGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4vh;
+
+  @include desktopAndBeyondView() {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1vh;
+  }
+}
+
+.processCardGridContainer {
+  width: 302px;
+  display: grid;
+  grid-template-areas:
+    'processCardImage'
+    'processCardTitle'
+    'processCardParagraph';
+  justify-items: start;
+  justify-content: space-evenly;
+  align-items: center;
+
+  @include tabletAndBeyondView() {
+    width: 575px;
+    align-items: end;
+  }
+
+  @include desktopAndBeyondView() {
+    width: 302px;
+    grid-template-areas:
+      'processCardImage'
+      'processCardTitle'
+      'processCardParagraph';
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.processCardGridContainerTabletLayoutOne {
+  @include tabletAndBeyondView() {
+    grid-template-areas:
+      'processCardTitle processCardImage'
+      'processCardParagraph processCardImage';
+  }
+
+  @include desktopAndBeyondView() {
+    grid-template-areas:
+      'processCardImage'
+      'processCardTitle'
+      'processCardParagraph';
+  }
+}
+
+.processCardGridContainerTabletLayoutTwo {
+  @include tabletAndBeyondView() {
+    grid-template-areas:
+      'processCardImage processCardTitle'
+      'processCardImage processCardParagraph';
+  }
+
+  @include desktopAndBeyondView() {
+    grid-template-areas:
+      'processCardImage'
+      'processCardTitle'
+      'processCardParagraph';
+  }
+}
+
+.processCardImage {
+  grid-area: processCardImage;
+}
+
+.processCardImage img {
+  width: 264px;
+  height: 225px;
+
+  @include tabletAndBeyondView() {
+    width: 258px;
+    height: 220px;
+  }
+
+  @include desktopAndBeyondView() {
+    width: 272px;
+    height: 219px;
+  }
+}
+
+.processCardTitle {
+  grid-area: processCardTitle;
+  margin-bottom: 1vh;
+}
+
+.processCardTitle h1 {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 33.6px;
+  letter-spacing: 0.05em;
+  color: $font-color-four;
+}
+
+.processCardParagraph {
+  grid-area: processCardParagraph;
+  width: 254px;
+  height: 160px;
+}
+
+.processCardParagraph p {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 0.05em;
+  color: $font-color-four;
+}

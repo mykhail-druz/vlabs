@@ -1,0 +1,105 @@
+@import '@/styles/_colors.scss';
+@import '@/styles/_mixins.scss';
+
+.testimonialsCardGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 6vh;
+  justify-content: center;
+  min-width: 384px;
+
+  @include tabletAndBeyondView() {
+    min-width: 826px;
+  }
+}
+
+.testimonialsCardItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  width: 365px;
+  align-items: center;
+}
+
+.testimonialsCardItemTwo {
+  display: none;
+
+  @include tabletAndBeyondView() {
+    display: flex;
+  }
+}
+
+.testimonialsCardItemThree {
+  display: none;
+
+  @include desktopAndBeyondView() {
+    display: flex;
+  }
+}
+
+.testimonialsCardHeaderText {
+  height: 49px;
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: 100px;
+  line-height: 120px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: $font-color-four;
+}
+
+.testimonialsCardProfileImage img {
+  width: 100px;
+  height: 100px;
+  border-radius: 60px;
+  border: 2px solid $font-color-one;
+}
+
+.testimonialsCardStarsImage img {
+  width: 236px;
+  height: 44px;
+}
+
+.testimonialsCardTitle {
+  width: auto;
+  height: 16px;
+  margin-bottom: 0.75vh;
+}
+
+.testimonialsCardTitle h1 {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: $font-color-four;
+}
+
+.testimonialsCardHeading h2 {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: $font-color-four;
+}
+
+.testimonialsCardParagraph p {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: $font-color-four;
+}
+
+.testimonialsCardGroupDotsIcon img {
+  width: 178px;
+  height: 76px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -1,0 +1,94 @@
+@import '@/styles/_mixins.scss';
+@import '@/styles/_colors.scss';
+
+.explainerVideosContent {
+  @include tabletAndBeyondView() {
+    width: 810px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @include desktopAndBeyondView() {
+    width: 872px;
+  }
+}
+
+.explainerVideosPlayerModalButton img {
+  width: 100vw;
+  height: auto;
+
+  @include tabletAndBeyondView() {
+    width: 810px;
+  }
+
+  @include desktopAndBeyondView() {
+    width: 872px;
+  }
+}
+
+.explainerVideosGridContainer {
+  display: grid;
+  grid-template-areas:
+    'explainerVideosHeading'
+    'explainerVideosParagraph'
+    'explainerVideosContactButton';
+  justify-items: center;
+
+  @include tabletAndBeyondView() {
+    justify-items: start;
+  }
+}
+
+.explainerVideosHeading {
+  grid-area: explainerVideosHeading;
+  margin: 0 10% 3% 10%;
+
+  @include tabletAndBeyondView() {
+    margin: 0 0 2.5% 0;
+  }
+}
+
+.explainerVideosHeading h2 {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 33.6px;
+  letter-spacing: 0.05em;
+  color: $font-color-five;
+}
+
+.explainerVideosParagraph {
+  grid-area: explainerVideosParagraph;
+  margin: 0 5% 4% 5%;
+
+  @include tabletAndBeyondView() {
+    margin: 0 0 4% 0;
+  }
+}
+
+.explainerVideosParagraph p {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 0.05em;
+  color: $font-color-four;
+  text-align: center;
+
+  @include tabletAndBeyondView() {
+    text-align: left;
+  }
+}
+
+.explainerVideosParagraph p br {
+  display: none;
+
+  @include tabletAndBeyondView() {
+    display: unset;
+  }
+}
+
+.explainerVideosContactButton {
+  grid-area: explainerVideosContactButton;
+}

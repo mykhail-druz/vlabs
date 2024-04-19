@@ -1,0 +1,100 @@
+@import '@/styles/_mixins.scss';
+@import '@/styles/_colors.scss';
+
+.servicesContent {
+  margin: 0 10%;
+
+  @include desktopAndBeyondView() {
+    margin: 0 14%;
+  }
+}
+
+.servicesCardGridContainer {
+  display: grid;
+  row-gap: 5vh;
+  grid-template-areas:
+    'servicesCardOne'
+    'servicesCardTwo'
+    'servicesCardThree';
+  justify-items: center;
+  align-items: center;
+
+  @include tabletAndBeyondView() {
+    grid-template-areas:
+      'servicesCardOne servicesCardTwo'
+      'servicesCardThree servicesCardThree';
+    row-gap: unset;
+  }
+
+  @include desktopAndBeyondView() {
+    grid-template-areas: 'servicesCardOne servicesCardTwo servicesCardThree';
+  }
+}
+
+.servicesCardOne {
+  grid-area: servicesCardOne;
+}
+
+.servicesCardTwo {
+  grid-area: servicesCardTwo;
+}
+
+.servicesCardThree {
+  grid-area: servicesCardThree;
+}
+
+.servicesCardGridItem {
+  min-width: 324px;
+}
+
+.servicesCardImage img {
+  width: 212px;
+  height: 207px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.servicesCardTitle {
+  min-height: unset;
+
+  @include tabletAndBeyondView() {
+    min-height: 84px;
+  }
+}
+
+.servicesCardTitle h1 {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: $font-color-four;
+}
+
+.servicesCardParagraph {
+  min-height: unset;
+
+  @include tabletAndBeyondView() {
+    min-height: 176px;
+  }
+}
+
+.servicesCardThree .servicesCardParagraph {
+  min-height: unset;
+
+  @include desktopAndBeyondView() {
+    min-height: 176px;
+  }
+}
+
+.servicesCardParagraph p {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: $font-color-four;
+}

@@ -1,0 +1,129 @@
+@import '@/styles/_mixins.scss';
+@import '@/styles/_colors.scss';
+
+.headerContent {
+  height: 72px;
+  background-color: $primary-color;
+  display: flex;
+
+  @include tabletAndBeyondView() {
+    height: 90px;
+  }
+
+  @include desktopAndBeyondView() {
+    height: 109px;
+    margin: 0 12%;
+  }
+}
+
+.logoContainer {
+  height: 100%;
+  width: 15%;
+}
+
+.logoContainer img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10%;
+  z-index: 2;
+
+  @include desktopAndBeyondView() {
+    left: unset;
+  }
+}
+
+.navBar {
+  height: 100%;
+  width: 85%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.linksContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  z-index: 1;
+  background-color: $primary-color;
+  transition: 0.5s ease-out;
+
+  @include desktopAndBeyondView() {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: unset;
+    top: unset;
+    right: unset;
+    position: relative;
+  }
+}
+
+.navBar a {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: auto;
+  width: 100%;
+  padding: 20px 36px;
+  text-decoration: none;
+  color: $font-color-one;
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25.8px;
+  letter-spacing: 0.1em;
+
+  @include desktopAndBeyondView() {
+    height: 100%;
+    padding: 0 1%;
+    color: $font-color-three;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+
+.navBar button {
+  margin: 20px 30px;
+
+  @include desktopAndBeyondView() {
+    margin: 0 20px;
+  }
+}
+
+.navBar a:hover,
+.home p {
+  color: $font-color-two;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+#headerSidebarActive {
+  display: none;
+}
+
+.openSidebarButton,
+.closeSidebarButton {
+  padding: 20px;
+  display: block;
+
+  @include desktopAndBeyondView() {
+    padding: 0;
+    display: none;
+  }
+}
+
+.closeSidebarButton {
+  margin-left: auto;
+}
+
+#headerSidebarActive:checked ~ .linksContainer {
+  right: 0;
+}

@@ -1,0 +1,13 @@
+@import '@/styles/_mixins.scss';
+
+.spacer {
+  height: var(--spacer-height-mobile);
+
+  @include tabletAndBeyondView() {
+    height: var(--spacer-height-tablet);
+  }
+
+  @include desktopAndBeyondView() {
+    height: var(--spacer-height-desktop);
+  }
+}

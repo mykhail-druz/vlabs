@@ -1,0 +1,17 @@
+@import '@/styles/_colors.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  // Controls the max width the page elements can expand to
+  max-width: 100em;
+
+  overflow-x: hidden;
+  background-color: $primary-color;
+  margin: auto;
+}

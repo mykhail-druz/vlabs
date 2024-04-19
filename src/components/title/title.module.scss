@@ -1,0 +1,11 @@
+@import '@/styles/_colors.scss';
+
+.titleLabel {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: $font-color-four;
+}

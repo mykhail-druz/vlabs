@@ -1,0 +1,56 @@
+@import '@/styles/_colors.scss';
+@import '@/styles/_mixins.scss';
+
+.caseStudiesPostsGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6vh;
+  margin: 0 2vh;
+
+  @include tabletAndBeyondView() {
+    margin: 0 4vh;
+  }
+}
+
+.caseStudiesPostItem {
+  text-decoration: none;
+}
+
+.caseStudiesPostCoverImage {
+  min-height: 25vw;
+  height: 355px;
+  border-radius: 10px;
+  border: 2px solid $font-color-six;
+  margin-bottom: 2.5vh;
+}
+
+.caseStudiesPostTitle {
+  margin-bottom: 1vh;
+}
+
+.caseStudiesPostTitle h1 {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  letter-spacing: 0.05em;
+  color: $font-color-four;
+}
+
+.caseStudiesPostParagraph {
+  width: 100%;
+
+  @include tabletAndBeyondView() {
+    width: 75%;
+  }
+}
+
+.caseStudiesPostParagraph p {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 0.05em;
+  color: $font-color-four;
+}
