@@ -7,6 +7,7 @@ const HomeFirstCover = () => {
   return (
     <section>
       <div className={styles.homeContent}>
+        <div className={styles.circle}></div>
         <div className={styles.homeGridContainer}>
           <div
             className={`${styles.homeGridItem} ${styles.homeCoverImage}`}
@@ -30,8 +31,10 @@ const HomeFirstCover = () => {
             className={`${styles.gridItem} ${styles.homeParagraph}`}
           >
             <p>
-              if you are ready to grow awareness, driven revenue and
-              crush your market, then it&apos;s time to...
+              if you are ready to grow awareness, drive
+              <br className={`${styles.br}`} /> revenue and crush your
+              <br />
+              market, then it&apos;s time to...
             </p>
           </div>
 

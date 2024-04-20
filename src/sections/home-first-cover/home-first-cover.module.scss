@@ -3,6 +3,8 @@
 
 .homeContent {
   margin: 0 2%;
+  padding: 50px 0px;
+  z-index: 2;
 
   @include tabletAndBeyondView() {
     margin: 0 5%;
@@ -106,5 +108,40 @@
 
   @include tabletAndBeyondView() {
     text-align: left;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .br {
+    display: none;
+  }
+}
+
+.circle {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  width: 1px;
+  height: 1px;
+  background: radial-gradient(
+    circle,
+    $secondary-color 0%,
+    $secondary-color 50%,
+    $primary-color 100%
+  );
+  border-radius: 50%;
+  box-shadow: 0px 0px 200px 200px $secondary-color;
+  animation: flickerAnimation 20s infinite;
+}
+
+@keyframes flickerAnimation {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
   }
 }
