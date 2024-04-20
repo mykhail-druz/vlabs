@@ -3,40 +3,71 @@ import styles from './portfolio.module.scss'
 import Image from 'next/image'
 import { staticImageLinks } from '@/assets'
 
-interface PortfolioCardDataElement {
-  image: string
-  imageAlt: string
-  heading: string
+interface CardData {
+  id: number
+  attributes: {
+    title: string
+    alt: string
+    createdAt: string
+    updatedAt: string
+    publishedAt: string
+    video: {
+      data: {
+        id: number
+        attributes: {
+          name: string
+          alternativeText: string
+          caption: string
+          width: number
+          height: number
+          formats: {
+            thumbnail: {
+              name: string
+              hash: string
+              ext: string
+              mime: string
+              path: string
+              width: number
+              height: number
+              size: number
+              sizeInBytes: number
+              url: string
+            }
+          }
+          hash: string
+          ext: string
+          mime: string
+          size: number
+          url: string
+          previewUrl: string
+          provider: string
+          provider_metadata: string
+          createdAt: string
+          updatedAt: string
+        }
+      }
+    }
+  }
 }
 
-const portfolioCardData: Array<PortfolioCardDataElement> = [
-  {
-    image: staticImageLinks.PORTFOLIO_CARD_ONE_IMAGE,
-    imageAlt: 'portfolio-card-one-image',
-    heading:
-      "META and Google Ad for drive more participation for '2024 Come & try day campaign",
-  },
-  {
-    image: staticImageLinks.PORTFOLIO_CARD_TWO_IMAGE,
-    imageAlt: 'portfolio-card-two-image',
-    heading:
-      'Creating engaging social media reels from using long conversations',
-  },
-  {
-    image: staticImageLinks.PORTFOLIO_CARD_THREE_IMAGE,
-    imageAlt: 'portfolio-card-Three-image',
-    heading:
-      '2d animated AD for digital marketing. We created this add for iCan Mall.',
-  },
-  {
-    image: staticImageLinks.PORTFOLIO_CARD_ONE_IMAGE,
-    imageAlt: 'portfolio-card-one-image',
-    heading:
-      "META and Google Ad for drive more participation for '2024 Come & try day campaign",
-  },
-]
+const Portfolio = async () => {
+  const fetchData = async () => {
+    const requestOptions = {
+      next: { revalidate: 10 },
+      headers: {
+        Authorization: `Bearer ${process.env.API_PORTFOLIO_TOKEN}`,
+        'Cache-Control': 'no-cache',
+      },
+    }
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/portfolios?populate=*`,
+      requestOptions
+    )
+    const data = await response.json()
+    return data
+  }
+  const portfolioData = await fetchData()
 
-const Portfolio = () => {
   return (
     <section>
       <div className={styles.portfolioContent}>
@@ -48,35 +79,66 @@ const Portfolio = () => {
         <Spacer height={{ mobile: '3vh' }} />
 
         <div className={styles.portfolioCardSlider}>
-          {portfolioCardData.map((cardData, cardIndex) => {
-            return (
-              <div className={styles.portfolioCard} key={cardIndex}>
-                <div
-                  className={styles.portfolioCardCoverImageElement}
-                >
-                  <Image
-                    src={cardData.image}
-                    width={418}
-                    height={311}
-                    alt={cardData.imageAlt}
-                    className={styles.portfolioCardCoverImage}
-                  />
+          {portfolioData.data.map(
+            (cardData: CardData, cardIndex: number) => {
+              const videoPath =
+                cardData.attributes.video.data.attributes
 
-                  <Image
-                    src={staticImageLinks.PORTFOLIO_CARD_PLAYER_IMAGE}
-                    width={100}
-                    height={100}
-                    alt="portfolio-card-player-image"
-                    className={styles.portfolioCardPlayerImage}
-                  />
+              return (
+                <div className={styles.portfolioCard} key={cardIndex}>
+                  <div
+                    className={styles.portfolioCardCoverImageElement}
+                  >
+                    {videoPath.ext === '.mp4' ? (
+                      <video
+                        width={videoPath.width}
+                        height={videoPath.height}
+                        controls
+                        preload="none"
+                      >
+                        <source
+                          src={
+                            'http://localhost:1337/uploads/672_Countdown_10_seconds_preview_138542a32e.mp4'
+                          }
+                          type="video/mp4"
+                        />
+                        {/* <track
+                      src="/path/to/captions.vtt"
+                      kind="subtitles"
+                      srcLang="en"
+                      label="English"
+                    /> */}
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : (
+                      <>
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${videoPath.url}`}
+                          width={videoPath.width}
+                          height={videoPath.height}
+                          alt={cardData.attributes.alt}
+                          className={styles.portfolioCardCoverImage}
+                        />
+                        <Image
+                          src={
+                            staticImageLinks.PORTFOLIO_CARD_PLAYER_IMAGE
+                          }
+                          width={100}
+                          height={100}
+                          alt="portfolio-card-player-image"
+                          className={styles.portfolioCardPlayerImage}
+                        />
+                      </>
+                    )}
+                  </div>
+
+                  <h1 className={styles.portfolioCardHeading}>
+                    {cardData.attributes.title}
+                  </h1>
                 </div>
-
-                <h1 className={styles.portfolioCardHeading}>
-                  {cardData.heading}
-                </h1>
-              </div>
-            )
-          })}
+              )
+            }
+          )}
         </div>
 
         <Spacer height={{ mobile: '5vh' }} />
