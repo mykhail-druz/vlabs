@@ -92,9 +92,13 @@
   line-height: 23.58px;
   text-align: center;
   letter-spacing: 0.05em;
-  color: $font-color-two;
+  color: $font-color-three;
 
   @include tabletAndBeyondView() {
     text-align: left;
+  }
+
+  @media only screen and (max-width: 830px) {
+    color: $font-color-two;
   }
 }
