@@ -1,31 +1,76 @@
 import { Spacer, Title } from '@/components'
 import styles from './case-studies.module.scss'
 import Link from 'next/link'
-import urlPathnames from '@/urlPathnames'
+import Image from 'next/image'
 
-interface CaseStudiesPostElement {
-  redirectPath: string
-  heading: string
-  paragraph: string
+interface CardData {
+  id: number
+  attributes: {
+    title: string
+    link: string
+    alt: string
+    description: string
+    createdAt: string
+    updatedAt: string
+    publishedAt: string
+    image: {
+      data: {
+        id: number
+        attributes: {
+          name: string
+          alternativeText: string
+          caption: string
+          width: number
+          height: number
+          formats: {
+            thumbnail: {
+              name: string
+              hash: string
+              ext: string
+              mime: string
+              path: string
+              width: number
+              height: number
+              size: number
+              sizeInBytes: number
+              url: string
+            }
+          }
+          hash: string
+          ext: string
+          mime: string
+          size: number
+          url: string
+          previewUrl: string
+          provider: string
+          provider_metadata: string
+          createdAt: string
+          updatedAt: string
+        }
+      }
+    }
+  }
 }
 
-const caseStudiesPostData: Array<CaseStudiesPostElement> = [
-  {
-    redirectPath: `${urlPathnames.CASE_STUDY_POST}/1`,
-    heading: 'How we got 100k followers',
-    paragraph:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-  },
-  /* Second post item will be removed during the Sanity data retrieval implementation for the case study posts */
-  {
-    redirectPath: `${urlPathnames.CASE_STUDY_POST}/2`,
-    heading: 'How we got 100k followers',
-    paragraph:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-  },
-]
+const CaseStudies = async () => {
+  const fetchData = async () => {
+    const requestOptions = {
+      next: { revalidate: 10 },
+      headers: {
+        Authorization: `Bearer ${process.env.API_PORTFOLIO_TOKEN}`,
+        'Cache-Control': 'no-cache',
+      },
+    }
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/case-studies?populate=*`,
+      requestOptions
+    )
+    const data = await response.json()
+    return data
+  }
+  const caseStudiesData = await fetchData()
+  const caseStudiesList = caseStudiesData
 
-const CaseStudies = () => {
   return (
     <section>
       <div className={styles.caseStudiesContent}>
@@ -37,25 +82,38 @@ const CaseStudies = () => {
         <Spacer height={{ mobile: '3vh' }} />
 
         <div className={styles.caseStudiesPostsGroup}>
-          {caseStudiesPostData.map((postData, postIndex) => {
-            return (
-              <Link
-                href={postData.redirectPath}
-                className={styles.caseStudiesPostItem}
-                key={postIndex}
-              >
-                <div className={styles.caseStudiesPostCoverImage} />
+          {caseStudiesList.data.map(
+            (postData: CardData, postIndex: number) => {
+              const path = postData.attributes
+              const title = path.title
+              const description = path.description
+              const link = path.link
+              const imgPath = path.image.data.attributes
+              return (
+                <Link
+                  href={link}
+                  className={styles.caseStudiesPostItem}
+                  key={postIndex}
+                >
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${imgPath.url}`}
+                    width={imgPath.width}
+                    height={imgPath.height}
+                    alt={path.alt}
+                    className={styles.caseStudiesPostCoverImage}
+                  />
 
-                <div className={styles.caseStudiesPostTitle}>
-                  <h1>{postData.heading}</h1>
-                </div>
+                  <div className={styles.caseStudiesPostTitle}>
+                    <h1>{title}</h1>
+                  </div>
 
-                <div className={styles.caseStudiesPostParagraph}>
-                  <p>{postData.paragraph}</p>
-                </div>
-              </Link>
-            )
-          })}
+                  <div className={styles.caseStudiesPostParagraph}>
+                    <p>{description}</p>
+                  </div>
+                </Link>
+              )
+            }
+          )}
         </div>
       </div>
     </section>

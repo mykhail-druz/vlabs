@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "strapi":"cd ./strapi/ && yarn develop",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -15,7 +16,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
-    "sass": "^1.71.1"
+    "sass": "^1.71.1",
+    "swiper": "^11.1.1"
   },
   "devDependencies": {
     "@types/node": "^20",
