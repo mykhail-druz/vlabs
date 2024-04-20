@@ -86,7 +86,7 @@ const Testimonials = async () => {
         <Spacer height={{ mobile: '3vh' }} />
 
         <div className={styles.testimonialsCardGroup}>
-          {testimonialsData.datamap(
+          {testimonialsData.data.map(
             (cardData: CardData, cardIndex: number) => {
               const path = cardData.attributes
 
