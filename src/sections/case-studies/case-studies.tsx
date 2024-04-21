@@ -95,6 +95,8 @@ const CaseStudies = async () => {
                   className={styles.caseStudiesPostItem}
                   key={postIndex}
                 >
+                  <div className={styles.circle_1}></div>
+                  <div className={styles.circle_2}></div>
                   <Image
                     src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${imgPath.url}`}
                     width={imgPath.width}

@@ -7,6 +7,8 @@ const ExplainerVideos = () => {
   return (
     <section>
       <div className={styles.explainerVideosContent}>
+        <div className={styles.circle_1}></div>
+        <div className={styles.circle_2}></div>
         <Title
           className={styles.explainerVideosTitle}
           label="Have you heard of Explainer Videos"

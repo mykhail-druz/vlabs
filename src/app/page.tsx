@@ -1,3 +1,4 @@
+'use client'
 import {
   CaseStudies,
   ExplainerVideos,
@@ -11,6 +12,9 @@ import {
   Testimonials,
 } from '@/sections'
 import { Spacer } from '../components'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
 
 export default async function Home() {
   const spacerHeights = {
@@ -35,6 +39,17 @@ export default async function Home() {
       mobile: '5vh',
     },
   }
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      mirror: false,
+      anchorPlacement: 'top-bottom',
+    })
+
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <>

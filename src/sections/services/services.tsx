@@ -88,6 +88,7 @@ const Services = () => {
   return (
     <section>
       <div className={styles.servicesContent}>
+        <div className={styles.circle}></div>
         <Title
           className={styles.servicesTitle}
           label="How can we help you"

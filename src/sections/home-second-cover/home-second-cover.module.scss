@@ -3,6 +3,7 @@
 
 .homeContent {
   margin: 0 2%;
+  position: relative;
 
   @include tabletAndBeyondView() {
     margin: 0 4%;
@@ -100,5 +101,34 @@
 
   @media only screen and (max-width: 830px) {
     color: $font-color-two;
+  }
+}
+
+.circle {
+  position: absolute;
+  z-index: 0;
+  left: 70%;
+  top: 90%;
+  width: 1px;
+  height: 1px;
+  background: radial-gradient(
+    circle,
+    $secondary-color 0%,
+    $primary-color 10%
+  );
+  border-radius: 50%;
+  box-shadow: 0px 0px 200px 200px $secondary-color;
+  animation: flickerAnimation 15s infinite;
+}
+
+@keyframes flickerAnimation {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0.3;
   }
 }
