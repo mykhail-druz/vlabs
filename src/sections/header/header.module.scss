@@ -5,6 +5,8 @@
   height: 72px;
   background-color: $primary-color;
   display: flex;
+  position: fixed;
+  width: 100%;
 
   @include tabletAndBeyondView() {
     height: 90px;
@@ -13,9 +15,9 @@
   @include desktopAndBeyondView() {
     height: 90px;
     padding: 0 15%;
-    position: fixed;
+
     top: 0;
-    z-index: 4;
+    z-index: 100;
     width: 100%;
     left: 50%;
     transform: translateX(-50%);
@@ -89,19 +91,12 @@
   letter-spacing: 0.1em;
 
   @include desktopAndBeyondView() {
+    width: auto;
     height: 100%;
-    padding: 0 1%;
+    padding: 0 10px;
     color: $font-color-three;
     font-weight: 500;
     line-height: 24px;
-  }
-}
-
-.navBar button {
-  margin: 20px 30px;
-
-  @include desktopAndBeyondView() {
-    margin: 0 20px;
   }
 }
 

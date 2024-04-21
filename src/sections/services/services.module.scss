@@ -3,7 +3,7 @@
 
 .servicesContent {
   margin: 0 10%;
-
+  position: relative;
   @include desktopAndBeyondView() {
     margin: 0 14%;
   }
@@ -97,4 +97,32 @@
   letter-spacing: 0.05em;
   text-align: center;
   color: $font-color-four;
+}
+
+.circle {
+  position: absolute;
+  left: 60%;
+  top: 40%;
+  width: 1px;
+  height: 1px;
+  background: radial-gradient(
+    circle,
+    $secondary-color 0%,
+    $primary-color 10%
+  );
+  border-radius: 50%;
+  box-shadow: 0px 0px 150px 150px $secondary-color;
+  animation: flickerAnimation 15s infinite;
+}
+
+@keyframes flickerAnimation {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }

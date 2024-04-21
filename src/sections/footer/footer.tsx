@@ -6,6 +6,7 @@ import { staticImageLinks } from '@/assets'
 const Footer = () => {
   return (
     <footer className={styles.footerContent}>
+      <div className={styles.circle_1}></div>
       <div className={styles.footerContentColumnLayout}>
         <div className={styles.footerLeftColumn}>
           <h1 className={styles.footerHeading}>

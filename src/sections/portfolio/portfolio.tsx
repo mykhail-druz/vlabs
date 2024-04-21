@@ -71,6 +71,7 @@ const Portfolio = async () => {
   return (
     <section>
       <div className={styles.portfolioContent}>
+        <div className={styles.circle_1}></div>
         <Title
           className={styles.portfolioTitle}
           label="See our work"

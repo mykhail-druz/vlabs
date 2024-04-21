@@ -6,6 +6,7 @@ const HomeSecondCover = () => {
   return (
     <section>
       <div className={styles.homeContent}>
+        <div className={styles.circle}></div>
         <div className={styles.homeGridContainer}>
           <div
             className={`${styles.homeGridItem} ${styles.homeCoverImage}`}

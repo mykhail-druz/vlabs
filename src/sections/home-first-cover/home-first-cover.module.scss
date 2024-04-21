@@ -126,12 +126,11 @@
   background: radial-gradient(
     circle,
     $secondary-color 0%,
-    $secondary-color 50%,
-    $primary-color 100%
+    $primary-color 10%
   );
   border-radius: 50%;
   box-shadow: 0px 0px 200px 200px $secondary-color;
-  animation: flickerAnimation 20s infinite;
+  animation: flickerAnimation 15s infinite;
 }
 
 @keyframes flickerAnimation {
@@ -139,7 +138,7 @@
     opacity: 0.3;
   }
   50% {
-    opacity: 0;
+    opacity: 0.1;
   }
   100% {
     opacity: 0.3;

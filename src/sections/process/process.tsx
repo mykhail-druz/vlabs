@@ -54,6 +54,8 @@ const Process = () => {
   return (
     <section>
       <div className={styles.processContent}>
+        <div className={styles.circle_1}></div>
+        <div className={styles.circle_2}></div>
         <Title
           className={styles.processTitle}
           label="Our simple and transparent process"
