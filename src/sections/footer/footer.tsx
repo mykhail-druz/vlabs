@@ -9,7 +9,9 @@ const Footer = () => {
       <div className={styles.circle_1}></div>
       <div className={styles.footerContentColumnLayout}>
         <div className={styles.footerLeftColumn}>
-          <h1 className={styles.footerHeading}>
+          <h1
+            className={`${styles.footerHeading} animate__animated animate__fadeInLeft`}
+          >
             Let&apos;s get this conversation started
           </h1>
 
