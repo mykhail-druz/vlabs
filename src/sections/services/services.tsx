@@ -86,7 +86,7 @@ const servicesCardData: Array<ServicesCardDataElement> = [
 
 const Services = () => {
   return (
-    <section>
+    <section id="services">
       <div className={styles.servicesContent}>
         <div className={styles.circle}></div>
         <Title

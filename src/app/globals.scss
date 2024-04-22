@@ -1,5 +1,4 @@
 @import '@/styles/_colors.scss';
-@import 'node_modules/@glidejs/glide/src/assets/sass/glide.core';
 * {
   box-sizing: border-box;
   padding: 0;
@@ -13,6 +12,7 @@ body {
   overflow-x: hidden;
   background-color: $primary-color;
   margin: auto;
+  scroll-behavior: smooth;
 }
 
 .swiper-pagination-bullet {

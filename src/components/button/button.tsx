@@ -10,6 +10,7 @@ interface Props {
     | 'EXPLAINER_VIDEOS_SECTION'
     | 'FOOTER_SECTION'
   className?: string
+  href?: string
 }
 
 const positionMap = new Map([
@@ -31,12 +32,12 @@ const Button = (props: Props) => {
     className,
   ]
 
-  const btnOnClick = () => {
-    alert('Feature Coming Soon')
-  }
+  // const btnOnClick = () => {
+  //   alert('Feature Coming Soon')
+  // }
 
   return (
-    <button className={classNames.join(' ')} onClick={btnOnClick}>
+    <button className={classNames.join(' ')}>
       <p>{label}</p>
     </button>
   )

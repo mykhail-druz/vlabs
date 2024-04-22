@@ -72,12 +72,13 @@ const CaseStudies = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        setCaseStudiesData(result), console.log(result)
+        setCaseStudiesData(result)
       })
       .catch((error) => console.error(error))
   }, [])
+
   return (
-    <section>
+    <section id="case-studies">
       <div className={styles.caseStudiesContent}>
         <Title
           className={styles.caseStudiesTitle}
@@ -93,22 +94,24 @@ const CaseStudies = () => {
                 const path = postData.attributes
                 const title = path.title
                 const description = path.description
-                const link = path.link
+
                 const imgPath = path.image.data.attributes
+
                 return (
                   <Link
-                    href={link}
+                    href={`/case-studies/${postData.id}`}
                     className={styles.caseStudiesPostItem}
                     key={postIndex}
                   >
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${imgPath.url}`}
-                      width={imgPath.width}
-                      height={imgPath.height}
-                      alt={path.alt}
-                      className={styles.caseStudiesPostCoverImage}
-                    />
-
+                    {path.image && (
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${imgPath.url}`}
+                        width={imgPath.width}
+                        height={imgPath.height}
+                        alt={path.alt}
+                        className={styles.caseStudiesPostCoverImage}
+                      />
+                    )}
                     <div className={styles.caseStudiesPostTitle}>
                       <h1>{title}</h1>
                     </div>

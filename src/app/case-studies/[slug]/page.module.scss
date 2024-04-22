@@ -1,0 +1,33 @@
+@import '@/styles/_colors.scss';
+
+.caseStudyPostContent {
+  margin: 0 12vw;
+}
+
+.caseStudyPostTitle {
+  text-align: left !important;
+}
+
+.caseStudyPostCoverImage {
+  height: 355px;
+  border-radius: 10px;
+  border: 2px solid $font-color-six;
+}
+
+.heading {
+  font-family: var(--font-katibeh);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 33.6px;
+  letter-spacing: 0.05em;
+  color: $font-color-four;
+}
+
+.paragraph {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 0.05em;
+  color: $font-color-four;
+}

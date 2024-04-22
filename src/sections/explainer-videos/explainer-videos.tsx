@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styles from './explainer-videos.module.scss'
 import { staticImageLinks } from '@/assets'
 import { Button, Spacer, Title } from '@/components'
@@ -17,12 +16,23 @@ const ExplainerVideos = () => {
         <Spacer height={{ mobile: '3vh' }} />
 
         <div className={styles.explainerVideosPlayerModalButton}>
-          <Image
-            src={staticImageLinks.EXPLAINER_VIDEOS_PLAYER_IMAGE}
-            width={100}
-            height={100}
-            alt="explainer-video-player-button"
-          />
+          <video
+            width={'100%'}
+            height={450}
+            controls
+            controlsList=""
+            preload="auto"
+            className={styles.video}
+            poster={staticImageLinks.EXPLAINER_VIDEOS_PLAYER_IMAGE}
+          >
+            <source
+              width={'100%'}
+              height={550}
+              src={`${process.env.NEXT_PUBLIC_STRAPI_URL}/uploads/V_Labs_Explainer_3c8463eeaf.mp4`}
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <Spacer height={{ mobile: '1.5vh' }} />
