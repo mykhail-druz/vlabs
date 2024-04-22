@@ -839,11 +839,11 @@ export interface ApiCaseStudieCaseStudie
     draftAndPublish: true
   }
   attributes: {
-    title: Attribute.String
-    description: Attribute.Text
-    link: Attribute.String & Attribute.Required
-    image: Attribute.Media
-    alt: Attribute.String
+    title: Attribute.String & Attribute.Required
+    description: Attribute.Text & Attribute.Required
+    image: Attribute.Media & Attribute.Required
+    alt: Attribute.String & Attribute.Required
+    paragraphs: Attribute.Blocks & Attribute.Required
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -877,6 +877,7 @@ export interface ApiPortfolioPortfolio extends Schema.CollectionType {
     title: Attribute.String
     video: Attribute.Media & Attribute.Required
     alt: Attribute.String
+    Preload_video: Attribute.Media
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
