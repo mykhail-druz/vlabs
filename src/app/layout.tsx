@@ -16,8 +16,25 @@ const roboto_init = Roboto({
 const classNames = [katibeh_init.variable, roboto_init.variable]
 
 export const metadata: Metadata = {
-  title: 'V Labs',
-  description: 'V Labs Landing Website',
+  title: 'V Labs | a digital media company',
+  description:
+    'Results driven, Creative led marketing for ambitious brands',
+  keywords: 'digital media, social media, content media',
+  robots: 'follow, index',
+  openGraph: {
+    title: 'V Labs | a digital media company',
+    description:
+      'Results driven, Creative led marketing for ambitious brands',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/dsknhgphh/image/upload/v1710609743/vlabs%20website%20assets/images/home-first-cover-image.svg',
+      },
+    ],
+    url: '',
+    siteName: 'V Labs | a digital media company',
+    locale: 'en',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

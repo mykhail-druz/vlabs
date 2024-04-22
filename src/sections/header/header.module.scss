@@ -7,17 +7,17 @@
   display: flex;
   position: fixed;
   width: 100%;
-
+  z-index: 200;
   @include tabletAndBeyondView() {
     height: 90px;
+    z-index: 1000;
   }
 
   @include desktopAndBeyondView() {
     height: 90px;
     padding: 0 15%;
-
-    top: 0;
     z-index: 100;
+    top: 0;
     width: 100%;
     left: 50%;
     transform: translateX(-50%);
@@ -34,7 +34,7 @@
   top: 50%;
   transform: translateY(-50%);
   left: 10%;
-  z-index: 2;
+  z-index: 101;
 
   @include desktopAndBeyondView() {
     left: unset;
@@ -59,7 +59,7 @@
   position: fixed;
   top: 0;
   right: -100%;
-  z-index: 1;
+  z-index: 10;
   background-color: $primary-color;
   transition: 0.5s ease-out;
   text-wrap: nowrap;

@@ -4,11 +4,14 @@ import { staticImageLinks } from '@/assets'
 import { Button, Spacer } from '@/components'
 import Link from 'next/link'
 import urlPathnames from '@/urlPathnames'
+import 'animate.css'
 
 const Header = () => {
   return (
     <header className={styles.headerContent}>
-      <div className={styles.logoContainer}>
+      <div
+        className={`${styles.logoContainer} animate__animated animate__fadeInDown`}
+      >
         <Link href={urlPathnames.BASE} replace>
           <Image
             src={staticImageLinks.LOGO_IMAGE}
@@ -18,8 +21,9 @@ const Header = () => {
           />
         </Link>
       </div>
-
-      <nav className={styles.navBar}>
+      <nav
+        className={`${styles.navBar} animate__animated animate__fadeInDown`}
+      >
         <input type="checkbox" id={styles.headerSidebarActive} />
         <label
           htmlFor={styles.headerSidebarActive}
