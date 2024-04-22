@@ -12,6 +12,7 @@ body {
   overflow-x: hidden;
   background-color: $primary-color;
   margin: auto;
+  scroll-behavior: smooth;
 }
 
 .swiper-pagination-bullet {

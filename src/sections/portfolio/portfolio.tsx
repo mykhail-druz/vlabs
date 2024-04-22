@@ -22,6 +22,33 @@ interface CardData {
       createdAt: string
       updatedAt: string
       publishedAt: string
+      Preload_video: {
+        data: {
+          id: number
+          attributes: {
+            name: string
+            alternativeText: string
+            caption: string
+            width: number
+            height: number
+            url: string
+            formats: {
+              thumbnail: {
+                name: string
+                hash: string
+                ext: string
+                mime: string
+                path: string
+                width: number
+                height: number
+                size: number
+                sizeInBytes: number
+                url: string
+              }
+            }
+          }
+        }
+      }
       video: {
         data: {
           id: number
@@ -45,6 +72,7 @@ interface CardData {
                 url: string
               }
             }
+
             hash: string
             ext: string
             mime: string
@@ -83,7 +111,7 @@ const Portfolio = () => {
   }, [])
 
   return (
-    <section>
+    <section id="portfolio">
       <div className={styles.portfolioContent}>
         <div className={styles.circle_1}></div>
         <Title
@@ -115,8 +143,11 @@ const Portfolio = () => {
         >
           {portfolioData &&
             portfolioData.data.map((cardData, cardIndex: number) => {
+              console.log(cardData)
               const videoPath =
                 cardData.attributes.video.data.attributes
+              const preloadPath =
+                cardData.attributes.Preload_video.data.attributes
 
               return (
                 <SwiperSlide
@@ -128,22 +159,16 @@ const Portfolio = () => {
                   >
                     {videoPath.ext === '.mp4' ? (
                       <video
-                        width={videoPath.width}
-                        height={videoPath.height}
+                        width={'420'}
+                        height={'310'}
+                        className={styles.video}
                         controls
                         preload="none"
+                        poster={`${process.env.NEXT_PUBLIC_STRAPI_URL}${preloadPath.url}`}
                       >
                         <source
-                          src={
-                            'http://localhost:1337/uploads/672_Countdown_10_seconds_preview_138542a32e.mp4'
-                          }
+                          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${videoPath.url}`}
                           type="video/mp4"
-                        />
-                        <track
-                          src="/path/to/captions.vtt"
-                          kind="subtitles"
-                          srcLang="en"
-                          label="English"
                         />
                         Your browser does not support the video tag.
                       </video>

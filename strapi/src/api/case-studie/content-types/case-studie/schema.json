@@ -13,19 +13,17 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "text"
-    },
-    "link": {
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "image": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -34,7 +32,12 @@
       ]
     },
     "alt": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "paragraphs": {
+      "type": "blocks",
+      "required": true
     }
   }
 }

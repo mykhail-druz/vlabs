@@ -83,13 +83,13 @@ const Testimonials = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        setTestimonialData(result), console.log(result)
+        setTestimonialData(result)
       })
       .catch((error) => console.error(error))
   }, [])
 
   return (
-    <section>
+    <section id="testimonials">
       <div className={styles.testimonialsContent}>
         <Title
           className={styles.testimonialsTitle}
@@ -127,10 +127,7 @@ const Testimonials = () => {
             >
               {testimonialsData.data.map(
                 (cardData, cardIndex: number) => {
-                  console.log(cardData)
-
                   const path = cardData.attributes
-                  console.log(path)
 
                   const imgPath = path.icon.data.attributes.url
                   return (

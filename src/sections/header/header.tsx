@@ -78,6 +78,7 @@ const Header = () => {
           </Link>
 
           <Button
+            href="#footer"
             label="Let's talk"
             position="HEADER_NAV_SIDEBAR_SECTION"
           />
