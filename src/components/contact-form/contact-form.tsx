@@ -1,68 +1,92 @@
 'use client'
-
+import React, { useState } from 'react'
 import styles from './contact-form.module.scss'
-import { useForm, SubmitHandler } from 'react-hook-form'
 
-const regexPatterns = {
-  onlyLettersUpToThreeWords: /^[A-Za-z]+[ ]?[A-Za-z]*[ ]?[A-Za-z]*$/i,
-  emailWithLettersOrNumbers: /^[A-Za-z]+[0-9]*@+.+$/i,
-  lettersOrNumbersOrDot: /^[A-Za-z. 0-9]*$/i,
-}
-
-interface Props {
+interface ContactFormProps {
   className?: string
 }
 
-interface FormInput {
+interface FormData {
   email: string
   name: string
   message: string
 }
 
-const ContactForm = (props: Props) => {
-  const { className } = props
+const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    name: '',
+    message: '',
+  })
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [message, setMessage] = useState<string>('')
 
-  const { register, handleSubmit } = useForm<FormInput>()
-
-  const onSubmit: SubmitHandler<FormInput> = (data) => {
-    alert('Feature coming soon')
-    console.log('Submitted data: ', data)
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const classNames = [styles.contactForm, className]
+  const handleOnSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/sendmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) throw new Error('Failed to send message')
+      setMessage('Message sent successfully!')
+      setFormData({ email: '', name: '', message: '' }) // Reset form
+    } catch (error) {
+      setMessage('Error sending message. Please try again.')
+    }
+
+    setIsSubmitting(false)
+  }
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={classNames.join(' ')}
+      onSubmit={handleOnSubmit}
+      className={`${styles.contactForm} ${className || ''}`}
     >
       <input
-        {...register('email', {
-          required: true,
-          pattern: regexPatterns.emailWithLettersOrNumbers,
-        })}
-        placeholder="Enter your email"
+        name="email"
+        id="email"
         type="email"
+        placeholder="Enter your email"
+        value={formData.email}
+        onChange={handleInputChange}
       />
       <input
-        {...register('name', {
-          required: true,
-          pattern: regexPatterns.onlyLettersUpToThreeWords,
-        })}
+        name="name"
+        id="name"
         placeholder="Enter your name"
+        value={formData.name}
+        onChange={handleInputChange}
       />
       <textarea
-        {...register('message', {
-          required: true,
-          pattern: regexPatterns.lettersOrNumbersOrDot,
-        })}
+        name="message"
+        id="message"
         placeholder="Tell us about your project"
+        value={formData.message}
+        onChange={handleInputChange}
       />
       <input
         type="submit"
-        value="Send a message"
+        value={isSubmitting ? 'Sending...' : 'Send a message'}
         className={styles.contactFormSubmitButton}
+        disabled={isSubmitting}
       />
+      {message && <div>{message}</div>}
     </form>
   )
 }
