@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "strapi":"cd ./strapi/ && yarn develop",
+    "strapi": "cd ./strapi/ && yarn develop",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,12 +12,15 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.6.0",
+    "keen-slider": "^6.8.6",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
     "sass": "^1.71.1",
-    "swiper": "^11.1.1"
+    "swiper": "^11.1.1",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,76 +1,81 @@
+'use client'
 import { Spacer, Title } from '@/components'
 import styles from './case-studies.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
+import { myHeaders } from '@/lib/fetch'
+import { useEffect, useState } from 'react'
 
 interface CardData {
-  id: number
-  attributes: {
-    title: string
-    link: string
-    alt: string
-    description: string
-    createdAt: string
-    updatedAt: string
-    publishedAt: string
-    image: {
-      data: {
-        id: number
-        attributes: {
-          name: string
-          alternativeText: string
-          caption: string
-          width: number
-          height: number
-          formats: {
-            thumbnail: {
-              name: string
-              hash: string
-              ext: string
-              mime: string
-              path: string
-              width: number
-              height: number
-              size: number
-              sizeInBytes: number
-              url: string
+  data: {
+    id: number
+    attributes: {
+      title: string
+      link: string
+      alt: string
+      description: string
+      createdAt: string
+      updatedAt: string
+      publishedAt: string
+      image: {
+        data: {
+          id: number
+          attributes: {
+            name: string
+            alternativeText: string
+            caption: string
+            width: number
+            height: number
+            formats: {
+              thumbnail: {
+                name: string
+                hash: string
+                ext: string
+                mime: string
+                path: string
+                width: number
+                height: number
+                size: number
+                sizeInBytes: number
+                url: string
+              }
             }
+            hash: string
+            ext: string
+            mime: string
+            size: number
+            url: string
+            previewUrl: string
+            provider: string
+            provider_metadata: string
+            createdAt: string
+            updatedAt: string
           }
-          hash: string
-          ext: string
-          mime: string
-          size: number
-          url: string
-          previewUrl: string
-          provider: string
-          provider_metadata: string
-          createdAt: string
-          updatedAt: string
         }
       }
     }
-  }
+  }[]
 }
 
-const CaseStudies = async () => {
-  const fetchData = async () => {
+const CaseStudies = () => {
+  const [caseStudiesData, setCaseStudiesData] = useState<CardData>()
+
+  useEffect(() => {
     const requestOptions = {
+      method: 'GET',
       next: { revalidate: 10 },
-      headers: {
-        Authorization: `Bearer ${process.env.API_PORTFOLIO_TOKEN}`,
-        'Cache-Control': 'no-cache',
-      },
+      headers: myHeaders,
     }
-    const response = await fetch(
+    fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/case-studies?populate=*`,
       requestOptions
     )
-    const data = await response.json()
-    return data
-  }
-  const caseStudiesData = await fetchData()
-  const caseStudiesList = caseStudiesData
-
+      .then((response) => response.json())
+      .then((result) => {
+        setCaseStudiesData(result), console.log(result)
+      })
+      .catch((error) => console.error(error))
+  }, [])
   return (
     <section>
       <div className={styles.caseStudiesContent}>
@@ -82,38 +87,39 @@ const CaseStudies = async () => {
         <Spacer height={{ mobile: '3vh' }} />
 
         <div className={styles.caseStudiesPostsGroup}>
-          {caseStudiesList.data.map(
-            (postData: CardData, postIndex: number) => {
-              const path = postData.attributes
-              const title = path.title
-              const description = path.description
-              const link = path.link
-              const imgPath = path.image.data.attributes
-              return (
-                <Link
-                  href={link}
-                  className={styles.caseStudiesPostItem}
-                  key={postIndex}
-                >
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${imgPath.url}`}
-                    width={imgPath.width}
-                    height={imgPath.height}
-                    alt={path.alt}
-                    className={styles.caseStudiesPostCoverImage}
-                  />
+          {caseStudiesData &&
+            caseStudiesData.data.map(
+              (postData, postIndex: number) => {
+                const path = postData.attributes
+                const title = path.title
+                const description = path.description
+                const link = path.link
+                const imgPath = path.image.data.attributes
+                return (
+                  <Link
+                    href={link}
+                    className={styles.caseStudiesPostItem}
+                    key={postIndex}
+                  >
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${imgPath.url}`}
+                      width={imgPath.width}
+                      height={imgPath.height}
+                      alt={path.alt}
+                      className={styles.caseStudiesPostCoverImage}
+                    />
 
-                  <div className={styles.caseStudiesPostTitle}>
-                    <h1>{title}</h1>
-                  </div>
+                    <div className={styles.caseStudiesPostTitle}>
+                      <h1>{title}</h1>
+                    </div>
 
-                  <div className={styles.caseStudiesPostParagraph}>
-                    <p>{description}</p>
-                  </div>
-                </Link>
-              )
-            }
-          )}
+                    <div className={styles.caseStudiesPostParagraph}>
+                      <p>{description}</p>
+                    </div>
+                  </Link>
+                )
+              }
+            )}
         </div>
       </div>
     </section>
