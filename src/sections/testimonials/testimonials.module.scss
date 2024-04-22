@@ -93,7 +93,16 @@
   line-height: 21.6px;
   letter-spacing: 0.05em;
   text-align: center;
+  width: 90%;
+  margin: 0 auto;
   color: $font-color-four;
+}
+.swiper {
+  --swiper-pagination-bullet-inactive-color: #636363;
+  --swiper-pagination-color: #0cdcc6;
+  --swiper-pagination-bullet-opacity: 1;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-size: 10px;
 }
 
 .testimonialsCardGroupDotsIcon img {

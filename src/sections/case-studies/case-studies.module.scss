@@ -20,7 +20,11 @@
     margin: 0 4vh;
   }
 }
-
+@media (max-width: 568px) {
+  .caseStudiesContent {
+    display: none;
+  }
+}
 .caseStudiesPostItem {
   text-decoration: none;
   z-index: 100;

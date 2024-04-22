@@ -79,7 +79,6 @@ export default async function Home() {
         {/* CASE-STUDIES section */}
         <CaseStudies />
         <Spacer height={spacerHeights.FifthType} />
-
         {/* TESTIMONIALS section */}
         <Testimonials />
         <Spacer height={spacerHeights.FourthType} />

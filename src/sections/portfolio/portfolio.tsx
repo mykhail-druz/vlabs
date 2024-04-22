@@ -1,72 +1,86 @@
+'use client'
 import { Spacer, Title } from '@/components'
 import styles from './portfolio.module.scss'
 import Image from 'next/image'
 import { staticImageLinks } from '@/assets'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
+import 'swiper/css/free-mode'
+import React, { useEffect, useState } from 'react'
+import { FreeMode } from 'swiper/modules'
+import { myHeaders } from '@/lib/fetch'
 
 interface CardData {
-  id: number
-  attributes: {
-    title: string
-    alt: string
-    createdAt: string
-    updatedAt: string
-    publishedAt: string
-    video: {
-      data: {
-        id: number
-        attributes: {
-          name: string
-          alternativeText: string
-          caption: string
-          width: number
-          height: number
-          formats: {
-            thumbnail: {
-              name: string
-              hash: string
-              ext: string
-              mime: string
-              path: string
-              width: number
-              height: number
-              size: number
-              sizeInBytes: number
-              url: string
+  data: {
+    id: number
+    attributes: {
+      title: string
+      alt: string
+      createdAt: string
+      updatedAt: string
+      publishedAt: string
+      video: {
+        data: {
+          id: number
+          attributes: {
+            name: string
+            alternativeText: string
+            caption: string
+            width: number
+            height: number
+            formats: {
+              thumbnail: {
+                name: string
+                hash: string
+                ext: string
+                mime: string
+                path: string
+                width: number
+                height: number
+                size: number
+                sizeInBytes: number
+                url: string
+              }
             }
+            hash: string
+            ext: string
+            mime: string
+            size: number
+            url: string
+            previewUrl: string
+            provider: string
+            provider_metadata: string
+            createdAt: string
+            updatedAt: string
           }
-          hash: string
-          ext: string
-          mime: string
-          size: number
-          url: string
-          previewUrl: string
-          provider: string
-          provider_metadata: string
-          createdAt: string
-          updatedAt: string
         }
       }
     }
-  }
+  }[]
 }
 
-const Portfolio = async () => {
-  const fetchData = async () => {
+const Portfolio = () => {
+  const [portfolioData, setPortfolioData] = useState<CardData>()
+
+  useEffect(() => {
     const requestOptions = {
+      method: 'GET',
       next: { revalidate: 10 },
-      headers: {
-        Authorization: `Bearer ${process.env.API_PORTFOLIO_TOKEN}`,
-        'Cache-Control': 'no-cache',
-      },
+      headers: myHeaders,
     }
-    const response = await fetch(
+    fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/portfolios?populate=*`,
       requestOptions
     )
-    const data = await response.json()
-    return data
-  }
-  const portfolioData = await fetchData()
+      .then((response) => response.json())
+      .then((result) => {
+        setPortfolioData(result), console.log(result)
+      })
+      .catch((error) => console.error(error))
+  }, [])
 
   return (
     <section>
@@ -79,14 +93,36 @@ const Portfolio = async () => {
 
         <Spacer height={{ mobile: '3vh' }} />
 
-        <div className={styles.portfolioCardSlider}>
-          {portfolioData.data.map(
-            (cardData: CardData, cardIndex: number) => {
+        {/* <div > */}
+
+        <Swiper
+          modules={[FreeMode]}
+          freeMode={true}
+          breakpoints={{
+            400: {
+              spaceBetween: 40,
+              slidesPerView: 1,
+            },
+            768: {
+              spaceBetween: 80,
+              slidesPerView: 3,
+            },
+            1024: {
+              spaceBetween: 120,
+              slidesPerView: 4,
+            },
+          }}
+        >
+          {portfolioData &&
+            portfolioData.data.map((cardData, cardIndex: number) => {
               const videoPath =
                 cardData.attributes.video.data.attributes
 
               return (
-                <div className={styles.portfolioCard} key={cardIndex}>
+                <SwiperSlide
+                  className={`${styles.portfolioCard}`}
+                  key={cardIndex}
+                >
                   <div
                     className={styles.portfolioCardCoverImageElement}
                   >
@@ -103,12 +139,12 @@ const Portfolio = async () => {
                           }
                           type="video/mp4"
                         />
-                        {/* <track
-                      src="/path/to/captions.vtt"
-                      kind="subtitles"
-                      srcLang="en"
-                      label="English"
-                    /> */}
+                        <track
+                          src="/path/to/captions.vtt"
+                          kind="subtitles"
+                          srcLang="en"
+                          label="English"
+                        />
                         Your browser does not support the video tag.
                       </video>
                     ) : (
@@ -136,11 +172,11 @@ const Portfolio = async () => {
                   <h1 className={styles.portfolioCardHeading}>
                     {cardData.attributes.title}
                   </h1>
-                </div>
+                </SwiperSlide>
               )
-            }
-          )}
-        </div>
+            })}
+        </Swiper>
+        {/* </div> */}
 
         <Spacer height={{ mobile: '5vh' }} />
 

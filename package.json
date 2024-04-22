@@ -18,7 +18,8 @@
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
     "sass": "^1.71.1",
-    "swiper": "^11.1.1"
+    "swiper": "^11.1.1",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
