@@ -49,6 +49,7 @@ interface CaseStudyResponse {
 
 const CaseStudyPost = async ({ params }: CaseStudyPostProps) => {
   const { slug } = params
+
   const fetchData = async (): Promise<CaseStudyResponse> => {
     const requestOptions = {
       method: 'GET',

@@ -877,7 +877,7 @@ export interface ApiPortfolioPortfolio extends Schema.CollectionType {
     title: Attribute.String
     video: Attribute.Media & Attribute.Required
     alt: Attribute.String
-    Preload_video: Attribute.Media
+    preloadMedia: Attribute.Media & Attribute.Required
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

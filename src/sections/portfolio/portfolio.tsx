@@ -22,7 +22,7 @@ interface CardData {
       createdAt: string
       updatedAt: string
       publishedAt: string
-      Preload_video: {
+      preloadMedia: {
         data: {
           id: number
           attributes: {
@@ -105,7 +105,7 @@ const Portfolio = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        setPortfolioData(result), console.log(result)
+        setPortfolioData(result)
       })
       .catch((error) => console.error(error))
   }, [])
@@ -143,11 +143,10 @@ const Portfolio = () => {
         >
           {portfolioData &&
             portfolioData.data.map((cardData, cardIndex: number) => {
-              console.log(cardData)
               const videoPath =
                 cardData.attributes.video.data.attributes
               const preloadPath =
-                cardData.attributes.Preload_video.data.attributes
+                cardData.attributes.preloadMedia.data.attributes
 
               return (
                 <SwiperSlide
