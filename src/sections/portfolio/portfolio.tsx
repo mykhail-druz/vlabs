@@ -12,6 +12,7 @@ import 'swiper/css/free-mode'
 import React, { useEffect, useState } from 'react'
 import { FreeMode } from 'swiper/modules'
 import { myHeaders } from '@/lib/fetch'
+import { MotionDiv } from '@/components'
 
 interface CardData {
   data: {
@@ -114,11 +115,17 @@ const Portfolio = () => {
     <section id="portfolio">
       <div className={styles.portfolioContent}>
         <div className={styles.circle_1}></div>
-        <Title
-          className={styles.portfolioTitle}
-          label="See our work"
-        />
-
+        <MotionDiv
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          observeInView={true}
+        >
+          <Title
+            className={styles.portfolioTitle}
+            label="See our work"
+          />
+        </MotionDiv>
         <Spacer height={{ mobile: '3vh' }} />
 
         {/* <div > */}
@@ -153,8 +160,16 @@ const Portfolio = () => {
                   className={`${styles.portfolioCard}`}
                   key={cardIndex}
                 >
-                  <div
+                  <MotionDiv
                     className={styles.portfolioCardCoverImageElement}
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      duration: 1,
+                      ease: 'easeOut',
+                      delay: 0.3 * cardIndex,
+                    }}
+                    observeInView={true}
                   >
                     {videoPath.ext === '.mp4' ? (
                       <video
@@ -191,7 +206,7 @@ const Portfolio = () => {
                         />
                       </>
                     )}
-                  </div>
+                  </MotionDiv>
 
                   <h1 className={styles.portfolioCardHeading}>
                     {cardData.attributes.title}
@@ -204,7 +219,13 @@ const Portfolio = () => {
 
         <Spacer height={{ mobile: '5vh' }} />
 
-        <div className={styles.portfolioSocialMediaRedirectElement}>
+        <MotionDiv
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          observeInView={true}
+          className={styles.portfolioSocialMediaRedirectElement}
+        >
           <a href="#">
             <p>Our Social media says more</p>
             <Image
@@ -214,7 +235,7 @@ const Portfolio = () => {
               alt="portfolio-social-media-arrow-icon"
             />
           </a>
-        </div>
+        </MotionDiv>
       </div>
     </section>
   )

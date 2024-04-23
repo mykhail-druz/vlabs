@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './home-first-cover.module.scss'
 import { staticImageLinks } from '@/assets'
-import { Button } from '@/components'
+import { Button, MotionDiv } from '@/components'
 
 const HomeFirstCover = () => {
   return (
@@ -9,8 +9,11 @@ const HomeFirstCover = () => {
       <div className={styles.homeContent}>
         <div className={styles.circle}></div>
         <div className={styles.homeGridContainer}>
-          <div
+          <MotionDiv
             className={`${styles.homeGridItem} ${styles.homeCoverImage}`}
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
           >
             <Image
               src={staticImageLinks.HOME_FIRST_COVER_IMAGE}
@@ -18,17 +21,25 @@ const HomeFirstCover = () => {
               height={100}
               alt="home-cover-image-one"
             />
-          </div>
+          </MotionDiv>
 
-          <div className={`${styles.gridItem} ${styles.homeTitle}`}>
+          <MotionDiv
+            className={`${styles.gridItem} ${styles.homeTitle}`}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+          >
             <h1>
               Results driven, <span>Creative led marketing</span> for
               ambitious brands
             </h1>
-          </div>
+          </MotionDiv>
 
-          <div
+          <MotionDiv
             className={`${styles.gridItem} ${styles.homeParagraph}`}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
           >
             <p>
               if you are ready to grow awareness, drive
@@ -36,16 +47,19 @@ const HomeFirstCover = () => {
               <br />
               market, then it&apos;s time to...
             </p>
-          </div>
+          </MotionDiv>
 
-          <div
+          <MotionDiv
             className={`${styles.gridItem} ${styles.homeContactButton}`}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.3, ease: 'easeOut' }}
           >
             <Button
               label="Let's talk"
               position="HOME_FIRST_SECTION"
             />
-          </div>
+          </MotionDiv>
         </div>
       </div>
     </section>

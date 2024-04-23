@@ -1,3 +1,4 @@
+'use client'
 import { Button, ContactForm, Spacer } from '@/components'
 import styles from './footer.module.scss'
 import Image from 'next/image'
@@ -9,31 +10,25 @@ const Footer = () => {
       <div className={styles.circle_1}></div>
       <div className={styles.footerContentColumnLayout}>
         <div className={styles.footerLeftColumn}>
-          <h1
-            className={`${styles.footerHeading} animate__animated animate__fadeInLeft`}
-          >
+          <h1 className={styles.footerHeading}>
             Let&apos;s get this conversation started
           </h1>
-
           <p
             className={`${styles.footerParagraph} ${styles.footerBookingParagraph}`}
           >
             You can simply select an available date from our calendar
             and schedule a call and we will show up. Its that easy
           </p>
-
           <Button
             label="Book a call now"
             position="FOOTER_SECTION"
             className={styles.footerContactButton}
           />
-
           <p
             className={`${styles.footerParagraph} ${styles.footerContactParagraph}`}
           >
             Or you can send a message to us form the below form
           </p>
-
           <ContactForm className={styles.footerContactForm} />
         </div>
 

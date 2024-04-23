@@ -1,4 +1,4 @@
-import { Spacer, Title } from '@/components'
+import { MotionDiv, Spacer, Title } from '@/components'
 import styles from './process.module.scss'
 import Image from 'next/image'
 import { staticImageLinks } from '@/assets'
@@ -56,19 +56,33 @@ const Process = () => {
       <div className={styles.processContent}>
         <div className={styles.circle_1}></div>
         <div className={styles.circle_2}></div>
-        <Title
-          className={styles.processTitle}
-          label="Our simple and transparent process"
-        />
-
+        <MotionDiv
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          observeInView={true}
+        >
+          <Title
+            className={styles.processTitle}
+            label="Our simple and transparent process"
+          />
+        </MotionDiv>
         <Spacer height={{ mobile: '2.5vh' }} />
 
         <div className={styles.processCardGridContainerGroup}>
           {processCardData.map((cardData, cardIndex) => {
             return (
-              <div
+              <MotionDiv
                 className={`${styles.processCardGridContainer} ${cardData.cardGridLayoutClassName}`}
                 key={cardIndex}
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  ease: 'easeOut',
+                  delay: 0.3 * cardIndex,
+                }}
+                observeInView={true}
               >
                 <div
                   className={`${styles.processCardGridItem} ${styles.processCardImage}`}
@@ -92,7 +106,7 @@ const Process = () => {
                 >
                   <p>{cardData.paragraph}</p>
                 </div>
-              </div>
+              </MotionDiv>
             )
           })}
         </div>

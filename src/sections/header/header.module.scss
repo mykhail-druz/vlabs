@@ -5,20 +5,19 @@
   height: 72px;
   background-color: $primary-color;
   display: flex;
-  position: fixed;
   width: 100%;
-  z-index: 200;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
   @include tabletAndBeyondView() {
     height: 90px;
-    z-index: 1000;
   }
 
   @include desktopAndBeyondView() {
-    height: 90px;
     padding: 0 15%;
-    z-index: 100;
-    top: 0;
-    width: 100%;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -27,17 +26,17 @@
 .logoContainer {
   height: 100%;
   width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logoContainer img {
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 10%;
-  z-index: 101;
+  z-index: 1000;
 
   @include desktopAndBeyondView() {
-    left: unset;
+    transform: none;
   }
 }
 
@@ -50,8 +49,6 @@
 }
 
 .linksContainer {
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -59,44 +56,46 @@
   position: fixed;
   top: 0;
   right: -100%;
-  z-index: 10;
+  width: 100%;
+  height: 100vh;
   background-color: $primary-color;
-  transition: 0.5s ease-out;
-  text-wrap: nowrap;
+  transition: right 0.5s ease-out;
+  z-index: 15;
 
   @include desktopAndBeyondView() {
+    height: 90px;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    z-index: unset;
-    top: unset;
-    right: unset;
     position: relative;
+    width: auto;
+    right: unset;
+    top: unset;
+    background-color: transparent;
   }
 }
 
 .navBar a {
   display: flex;
   align-items: center;
-  box-sizing: border-box;
-  height: auto;
-  width: 100%;
   padding: 20px 36px;
   text-decoration: none;
   color: $font-color-one;
   font-family: var(--font-roboto);
-  font-weight: 400;
   font-size: 20px;
-  line-height: 25.8px;
   letter-spacing: 0.1em;
 
   @include desktopAndBeyondView() {
     width: auto;
-    height: 100%;
     padding: 0 10px;
     color: $font-color-three;
-    font-weight: 500;
-    line-height: 24px;
+  }
+}
+
+.navButton {
+  margin-left: 36px;
+  @include desktopAndBeyondView() {
+    margin-left: 0;
   }
 }
 
@@ -104,7 +103,6 @@
 .home p {
   color: $font-color-two;
   font-weight: 700;
-  line-height: 24px;
 }
 
 #headerSidebarActive {
@@ -117,7 +115,6 @@
   display: block;
 
   @include desktopAndBeyondView() {
-    padding: 0;
     display: none;
   }
 }

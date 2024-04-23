@@ -1,5 +1,5 @@
 'use client'
-import { Spacer, Title } from '@/components'
+import { MotionDiv, Spacer, Title } from '@/components'
 import styles from './testimonials.module.scss'
 import Image from 'next/image'
 import { staticImageLinks } from '@/assets'
@@ -91,14 +91,26 @@ const Testimonials = () => {
   return (
     <section id="testimonials">
       <div className={styles.testimonialsContent}>
-        <Title
-          className={styles.testimonialsTitle}
-          label="See what clients say about us"
-        />
-
+        <MotionDiv
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          observeInView={true}
+        >
+          <Title
+            className={styles.testimonialsTitle}
+            label="See what clients say about us"
+          />
+        </MotionDiv>
         <Spacer height={{ mobile: '3vh' }} />
 
-        <div className={styles.testimonialsCardGroup}>
+        <MotionDiv
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          observeInView={true}
+          className={styles.testimonialsCardGroup}
+        >
           {testimonialsData && (
             <Swiper
               modules={[Pagination]}
@@ -196,7 +208,7 @@ const Testimonials = () => {
               )}
             </Swiper>
           )}
-        </div>
+        </MotionDiv>
 
         <Spacer height={{ mobile: '3vh' }} />
 

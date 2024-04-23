@@ -86,6 +86,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
         className={styles.contactFormSubmitButton}
         disabled={isSubmitting}
       />
+
       {message && <div>{message}</div>}
     </form>
   )

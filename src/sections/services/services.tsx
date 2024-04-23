@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './services.module.scss'
 import { staticImageLinks } from '@/assets'
-import { Spacer, Title } from '@/components'
+import { MotionDiv, Spacer, Title } from '@/components'
 import { ReactElement } from 'react'
 
 interface ServicesCardDataElement {
@@ -89,19 +89,33 @@ const Services = () => {
     <section id="services">
       <div className={styles.servicesContent}>
         <div className={styles.circle}></div>
-        <Title
-          className={styles.servicesTitle}
-          label="How can we help you"
-        />
-
+        <MotionDiv
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          observeInView={true}
+        >
+          <Title
+            className={styles.servicesTitle}
+            label="How can we help you"
+          />
+        </MotionDiv>
         <Spacer height={{ mobile: '3vh' }} />
 
         <div className={styles.servicesCardGridContainer}>
           {servicesCardData.map((cardData, cardIndex) => {
             return (
-              <div
+              <MotionDiv
                 className={`${styles.servicesCardGridItem} ${cardData.className}`}
                 key={cardIndex}
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  ease: 'easeOut',
+                  delay: 0.3 * cardIndex,
+                }}
+                observeInView={true}
               >
                 <div className={styles.servicesCardImage}>
                   <Image
@@ -123,7 +137,7 @@ const Services = () => {
                 <div className={styles.servicesCardParagraph}>
                   {cardData.paragraph}
                 </div>
-              </div>
+              </MotionDiv>
             )
           })}
         </div>

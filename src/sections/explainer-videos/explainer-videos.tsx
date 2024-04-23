@@ -1,6 +1,7 @@
 import styles from './explainer-videos.module.scss'
 import { staticImageLinks } from '@/assets'
 import { Button, Spacer, Title } from '@/components'
+import { MotionDiv } from '@/components'
 
 const ExplainerVideos = () => {
   return (
@@ -8,14 +9,26 @@ const ExplainerVideos = () => {
       <div className={styles.explainerVideosContent}>
         <div className={styles.circle_1}></div>
         <div className={styles.circle_2}></div>
-        <Title
-          className={styles.explainerVideosTitle}
-          label="Have you heard of Explainer Videos"
-        />
-
+        <MotionDiv
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          observeInView={true}
+        >
+          <Title
+            className={styles.explainerVideosTitle}
+            label="Have you heard of Explainer Videos"
+          />
+        </MotionDiv>
         <Spacer height={{ mobile: '3vh' }} />
 
-        <div className={styles.explainerVideosPlayerModalButton}>
+        <MotionDiv
+          className={styles.explainerVideosPlayerModalButton}
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          observeInView={true}
+        >
           <video
             width={'100%'}
             height={450}
@@ -33,18 +46,26 @@ const ExplainerVideos = () => {
             />
             Your browser does not support the video tag.
           </video>
-        </div>
+        </MotionDiv>
 
         <Spacer height={{ mobile: '1.5vh' }} />
 
         <div className={styles.explainerVideosGridContainer}>
-          <div
+          <MotionDiv
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            observeInView={true}
             className={`${styles.explainerVideosGridItem} ${styles.explainerVideosHeading}`}
           >
             <h2>What are explainer videos</h2>
-          </div>
+          </MotionDiv>
 
-          <div
+          <MotionDiv
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            observeInView={true}
             className={`${styles.explainerVideosGridItem} ${styles.explainerVideosParagraph}`}
           >
             <p>
@@ -61,16 +82,20 @@ const ExplainerVideos = () => {
               <br />
               captivating.
             </p>
-          </div>
+          </MotionDiv>
 
-          <div
+          <MotionDiv
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            observeInView={true}
             className={`${styles.explainerVideosGridItem} ${styles.explainerVideosContactButton}`}
           >
             <Button
               label="Ready to chat?"
               position="EXPLAINER_VIDEOS_SECTION"
             />
-          </div>
+          </MotionDiv>
         </div>
       </div>
     </section>

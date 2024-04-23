@@ -1,6 +1,7 @@
 import { staticImageLinks } from '@/assets'
 import styles from './home-second-cover.module.scss'
 import Image from 'next/image'
+import { MotionDiv } from '@/components'
 
 const HomeSecondCover = () => {
   return (
@@ -8,8 +9,12 @@ const HomeSecondCover = () => {
       <div className={styles.homeContent}>
         <div className={styles.circle}></div>
         <div className={styles.homeGridContainer}>
-          <div
+          <MotionDiv
             className={`${styles.homeGridItem} ${styles.homeCoverImage}`}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            observeInView={true}
           >
             <Image
               src={staticImageLinks.HOME_SECOND_COVER_IMAGE}
@@ -17,15 +22,25 @@ const HomeSecondCover = () => {
               height={100}
               alt="home-cover-image-one"
             />
-          </div>
-          <div className={`${styles.gridItem} ${styles.homeTitle}`}>
+          </MotionDiv>
+          <MotionDiv
+            className={`${styles.gridItem} ${styles.homeTitle}`}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.25 }}
+            observeInView={true}
+          >
             <h1>
               Captivating brand narratives, engaging creative &{' '}
               <span>market-moving ideas</span>
             </h1>
-          </div>
-          <div
+          </MotionDiv>
+          <MotionDiv
             className={`${styles.gridItem} ${styles.homeParagraph}`}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.25 }}
+            observeInView={true}
           >
             <p>
               V Labs is a creative marketing agency that helps
@@ -35,7 +50,7 @@ const HomeSecondCover = () => {
               strategy, we&#39;ll identify opportunities and drive
               meaningful engagement for your business
             </p>
-          </div>
+          </MotionDiv>
         </div>
       </div>
     </section>
