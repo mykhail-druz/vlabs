@@ -4,7 +4,7 @@ import styles from './testimonials.module.scss'
 import Image from 'next/image'
 import { staticImageLinks } from '@/assets'
 import { useEffect, useState } from 'react'
-import { myHeaders } from '@/lib/fetch'
+import { NEXT_PUBLIC_STRAPI_API_KEY } from '@/lib/fetch'
 import { Pagination } from 'swiper/modules'
 import { SwiperSlide, Swiper } from 'swiper/react'
 import 'swiper/css'
@@ -75,7 +75,9 @@ const Testimonials = () => {
     const requestOptions = {
       method: 'GET',
       next: { revalidate: 10 },
-      headers: myHeaders,
+      headers: {
+        Authorization: `Bearer ${NEXT_PUBLIC_STRAPI_API_KEY}`,
+      },
     }
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/reviews?populate=*`,
@@ -85,7 +87,9 @@ const Testimonials = () => {
       .then((result) => {
         setTestimonialData(result)
       })
-      .catch((error) => console.error(error))
+      .catch
+      // (error) => console.error(error)
+      ()
   }, [])
 
   return (

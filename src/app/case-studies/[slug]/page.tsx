@@ -1,9 +1,7 @@
-// Ваш файл pages/case-studies/[case-id].tsx
-
 import { Spacer, Title } from '@/components'
 import styles from './page.module.scss'
 import { Footer, Header } from '@/sections'
-import { myHeaders } from '@/lib/fetch'
+import { NEXT_PUBLIC_STRAPI_API_KEY } from '@/lib/fetch'
 import Image from 'next/image'
 
 interface ImageData {
@@ -54,7 +52,9 @@ const CaseStudyPost = async ({ params }: CaseStudyPostProps) => {
     const requestOptions = {
       method: 'GET',
       next: { revalidate: 10 },
-      headers: myHeaders,
+      headers: {
+        Authorization: `Bearer ${NEXT_PUBLIC_STRAPI_API_KEY}`,
+      },
     }
     const casesData = await fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/case-studies/${slug}?populate=*`,
@@ -64,7 +64,7 @@ const CaseStudyPost = async ({ params }: CaseStudyPostProps) => {
       .then((result) => {
         return result
       })
-      .catch((error) => console.error(error))
+      .catch()
     return casesData
   }
   const fetchedData = await fetchData()

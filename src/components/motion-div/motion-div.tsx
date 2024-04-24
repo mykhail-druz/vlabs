@@ -11,6 +11,8 @@ interface MotionDivProps {
   animate?: AnimationProps['animate']
   exit?: AnimationProps['exit']
   transition?: Transition
+  className?: string
+  style?: React.CSSProperties
   // [key: string]: any;
 }
 
@@ -20,11 +22,13 @@ export const MotionDiv = ({
   initial = { opacity: 0, y: 50 },
   animate = { opacity: 1, y: 0 },
   transition = { duration: 2, ease: 'easeOut' },
+  className,
+  style,
   ...props
 }: MotionDivProps) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.3,
     skip: !observeInView,
   })
 
@@ -40,6 +44,8 @@ export const MotionDiv = ({
       initial={initial}
       animate={animationControl}
       transition={transition}
+      className={className}
+      style={style}
       {...props}
     >
       {children}

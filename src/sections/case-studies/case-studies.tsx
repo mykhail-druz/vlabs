@@ -3,7 +3,7 @@ import { MotionDiv, Spacer, Title } from '@/components'
 import styles from './case-studies.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { myHeaders } from '@/lib/fetch'
+import { NEXT_PUBLIC_STRAPI_API_KEY } from '@/lib/fetch'
 import { useEffect, useState } from 'react'
 
 interface CardData {
@@ -64,7 +64,9 @@ const CaseStudies = () => {
     const requestOptions = {
       method: 'GET',
       next: { revalidate: 10 },
-      headers: myHeaders,
+      headers: {
+        Authorization: `Bearer ${NEXT_PUBLIC_STRAPI_API_KEY}`,
+      },
     }
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/case-studies?populate=*`,
@@ -74,7 +76,9 @@ const CaseStudies = () => {
       .then((result) => {
         setCaseStudiesData(result)
       })
-      .catch((error) => console.error(error))
+      .catch
+      // (error) => console.error(error)
+      ()
   }, [])
 
   return (

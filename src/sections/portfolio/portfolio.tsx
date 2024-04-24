@@ -11,7 +11,7 @@ import 'swiper/css/scrollbar'
 import 'swiper/css/free-mode'
 import React, { useEffect, useState } from 'react'
 import { FreeMode } from 'swiper/modules'
-import { myHeaders } from '@/lib/fetch'
+import { NEXT_PUBLIC_STRAPI_API_KEY } from '@/lib/fetch'
 import { MotionDiv } from '@/components'
 
 interface CardData {
@@ -98,7 +98,9 @@ const Portfolio = () => {
     const requestOptions = {
       method: 'GET',
       next: { revalidate: 10 },
-      headers: myHeaders,
+      headers: {
+        Authorization: `Bearer ${NEXT_PUBLIC_STRAPI_API_KEY}`,
+      },
     }
     fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/portfolios?populate=*`,
@@ -108,7 +110,9 @@ const Portfolio = () => {
       .then((result) => {
         setPortfolioData(result)
       })
-      .catch((error) => console.error(error))
+      .catch
+      // (error) => console.error(error)
+      ()
   }, [])
 
   return (

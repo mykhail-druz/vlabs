@@ -16,10 +16,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
   sgMail
     .send(content)
     .then(() => {
-      console.log('Email sent')
+      // console.log('Email sent')
     })
-    .catch((error) => {
-      console.error(error)
-    })
+    .catch
+    // (error) => {
+    // console.error(error)}
+    ()
   return NextResponse.json({ res })
 }
