@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: 'https://res.cloudinary.com/dsknhgphh/image/upload/v1710609743/vlabs%20website%20assets/images/home-first-cover-image.svg',
       },
     ],
-    url: '',
+    url: 'https://www.vlabs.com.au',
     siteName: 'V Labs | a digital media company',
     locale: 'en',
     type: 'website',

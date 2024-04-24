@@ -207,10 +207,20 @@ const Portfolio = () => {
                       </>
                     )}
                   </MotionDiv>
-
-                  <h1 className={styles.portfolioCardHeading}>
-                    {cardData.attributes.title}
-                  </h1>
+                  <MotionDiv
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      duration: 1,
+                      ease: 'easeOut',
+                      delay: 0.3 * cardIndex,
+                    }}
+                    observeInView={true}
+                  >
+                    <h1 className={styles.portfolioCardHeading}>
+                      {cardData.attributes.title}
+                    </h1>
+                  </MotionDiv>
                 </SwiperSlide>
               )
             })}

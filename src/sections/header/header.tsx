@@ -1,3 +1,4 @@
+'use client'
 import styles from './header.module.scss'
 import Image from 'next/image'
 import { staticImageLinks } from '@/assets'
@@ -9,8 +10,7 @@ const Header = () => {
   return (
     <header className={styles.headerContent}>
       <MotionDiv
-        className={`${styles.logoContainer}
-        `}
+        className={`${styles.logoContainer}`}
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut', delay: 1 }}
@@ -72,19 +72,58 @@ const Header = () => {
             className={styles.home}
             href={urlPathnames.BASE}
             replace
+            onClick={() => {
+              const checkbox = document.getElementById(
+                styles.headerSidebarActive
+              ) as HTMLInputElement
+              if (checkbox) checkbox.checked = false
+            }}
           >
             <p>Home</p>
           </Link>
-          <Link href={urlPathnames.SERVICES_SECTION} replace>
+          <Link
+            href={urlPathnames.SERVICES_SECTION}
+            replace
+            onClick={() => {
+              const checkbox = document.getElementById(
+                styles.headerSidebarActive
+              ) as HTMLInputElement
+              if (checkbox) checkbox.checked = false
+            }}
+          >
             <p>Services</p>
           </Link>
-          <Link href={urlPathnames.PORTFOLIO_SECTION}>
+          <Link
+            href={urlPathnames.PORTFOLIO_SECTION}
+            onClick={() => {
+              const checkbox = document.getElementById(
+                styles.headerSidebarActive
+              ) as HTMLInputElement
+              if (checkbox) checkbox.checked = false
+            }}
+          >
             <p>Portfolio</p>
           </Link>
-          <Link href={urlPathnames.CASE_STUDIES_SECTION}>
+          <Link
+            href={urlPathnames.CASE_STUDIES_SECTION}
+            onClick={() => {
+              const checkbox = document.getElementById(
+                styles.headerSidebarActive
+              ) as HTMLInputElement
+              if (checkbox) checkbox.checked = false
+            }}
+          >
             <p>Case studies</p>
           </Link>
-          <Link href={urlPathnames.TESTIMONIALS_SECTION}>
+          <Link
+            href={urlPathnames.TESTIMONIALS_SECTION}
+            onClick={() => {
+              const checkbox = document.getElementById(
+                styles.headerSidebarActive
+              ) as HTMLInputElement
+              if (checkbox) checkbox.checked = false
+            }}
+          >
             <p>Testimonials</p>
           </Link>
 

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: 
+Sitemap: https://www.vlabs.com.au/sitemap.xml

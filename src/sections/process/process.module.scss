@@ -144,13 +144,13 @@
 
 @keyframes flickerAnimation {
   0% {
-    opacity: 0.3;
+    opacity: 0.2;
   }
   50% {
-    opacity: 0.1;
+    opacity: 0;
   }
   100% {
-    opacity: 0.3;
+    opacity: 0.2;
   }
 }
 
@@ -173,12 +173,12 @@
 
 @keyframes flickerAnimation {
   0% {
-    opacity: 0.3;
+    opacity: 0.2;
   }
   50% {
-    opacity: 0.1;
+    opacity: 0;
   }
   100% {
-    opacity: 0.3;
+    opacity: 0.2;
   }
 }

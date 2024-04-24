@@ -45,7 +45,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 
       if (!response.ok) throw new Error('Failed to send message')
       setMessage('Message sent successfully!')
-      setFormData({ email: '', name: '', message: '' }) // Reset form
+      setFormData({ email: '', name: '', message: '' })
     } catch (error) {
       setMessage('Error sending message. Please try again.')
     }
