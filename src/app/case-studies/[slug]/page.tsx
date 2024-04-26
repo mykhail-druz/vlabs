@@ -1,14 +1,13 @@
 import { Spacer, Title } from '@/components'
 import styles from './page.module.scss'
 import { Footer, Header } from '@/sections'
-import { NEXT_PUBLIC_STRAPI_API_KEY } from '@/lib/fetch'
 import Image from 'next/image'
 
-interface ImageData {
-  url: string
-  width: number
-  height: number
-}
+// interface ImageData {
+//   url: string
+//   width: number
+//   height: number
+// }
 
 interface ParagraphData {
   children: {
@@ -18,57 +17,48 @@ interface ParagraphData {
   type: string
 }
 
-interface CaseStudyData {
-  id: number
-  attributes: {
-    title: string
-    description: string
-    createdAt: string
-    updatedAt: string
-    publishedAt: string
-    link: string
-    alt: string
-    slug: string
-    paragraphs: ParagraphData[]
-    image: {
-      data: {
-        attributes: ImageData
-      }
-    }
-  }
-}
+// interface CaseStudyData {
+
+//   id: number
+//   attributes: {
+//     title: string
+//     description: string
+//     createdAt: string
+//     updatedAt: string
+//     publishedAt: string
+//     link: string
+//     alt: string
+//     slug: string
+//     paragraphs: ParagraphData[]
+//     image: {
+//       data: {
+//         attributes: ImageData
+//       }
+//     }
+//   }
+// }
 interface CaseStudyPostProps {
   params: { slug: string }
-}
-interface CaseStudyResponse {
-  data: CaseStudyData
-  meta: Record<string, never>
 }
 
 const CaseStudyPost = async ({ params }: CaseStudyPostProps) => {
   const { slug } = params
 
-  const fetchData = async (): Promise<CaseStudyResponse> => {
-    const requestOptions = {
-      method: 'GET',
-      next: { revalidate: 10 },
-      headers: {
-        Authorization: `Bearer ${NEXT_PUBLIC_STRAPI_API_KEY}`,
-      },
-    }
-    const casesData = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/case-studies/${slug}?populate=*`,
-      requestOptions
+  async function getData() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/caseStudiesSlug?slug=${slug}`
     )
-      .then((response) => response.json())
-      .then((result) => {
-        return result
-      })
-      .catch()
-    return casesData
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+    return res.json()
   }
-  const fetchedData = await fetchData()
-  const imagePath = fetchedData.data.attributes.image.data.attributes
+
+  const data = await getData()
+
+  const imagePath = data
+    ? data.res.data?.attributes.image.data.attributes
+    : null
   return (
     <>
       <Header />
@@ -79,16 +69,18 @@ const CaseStudyPost = async ({ params }: CaseStudyPostProps) => {
           label="How we got 100k followers"
         />
         <Spacer height={{ mobile: '2vw' }} />
-        <Image
-          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${imagePath.url}`}
-          width={imagePath.width}
-          height={imagePath.height}
-          alt={fetchedData.data.attributes.alt}
-          className={styles.caseStudyPostCoverImage}
-        />
+        {data.res.data?.attributes && (
+          <Image
+            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${imagePath?.url}`}
+            width={imagePath?.width}
+            height={imagePath?.height}
+            alt={data.res.data?.attributes.alt}
+            className={styles.caseStudyPostCoverImage}
+          />
+        )}
         <Spacer height={{ mobile: '3vw' }} />
-        {fetchedData.data.attributes.paragraphs.map(
-          (sectionData, sectionIndex: number) => {
+        {data.res.data?.attributes.paragraphs.map(
+          (sectionData: ParagraphData, sectionIndex: number) => {
             return (
               <div key={sectionIndex}>
                 <Spacer height={{ mobile: '0.5vw' }} />

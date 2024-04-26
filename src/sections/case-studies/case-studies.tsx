@@ -1,85 +1,21 @@
-'use client'
 import { MotionDiv, Spacer, Title } from '@/components'
 import styles from './case-studies.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { NEXT_PUBLIC_STRAPI_API_KEY } from '@/lib/fetch'
-import { useEffect, useState } from 'react'
+import { CardDataCaseStudies } from './interface'
 
-interface CardData {
-  data: {
-    id: number
-    attributes: {
-      title: string
-      link: string
-      alt: string
-      description: string
-      createdAt: string
-      updatedAt: string
-      publishedAt: string
-      image: {
-        data: {
-          id: number
-          attributes: {
-            name: string
-            alternativeText: string
-            caption: string
-            width: number
-            height: number
-            formats: {
-              thumbnail: {
-                name: string
-                hash: string
-                ext: string
-                mime: string
-                path: string
-                width: number
-                height: number
-                size: number
-                sizeInBytes: number
-                url: string
-              }
-            }
-            hash: string
-            ext: string
-            mime: string
-            size: number
-            url: string
-            previewUrl: string
-            provider: string
-            provider_metadata: string
-            createdAt: string
-            updatedAt: string
-          }
-        }
-      }
-    }
-  }[]
-}
-
-const CaseStudies = () => {
-  const [caseStudiesData, setCaseStudiesData] = useState<CardData>()
-
-  useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      next: { revalidate: 10 },
-      headers: {
-        Authorization: `Bearer ${NEXT_PUBLIC_STRAPI_API_KEY}`,
-      },
-    }
-    fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/case-studies?populate=*`,
-      requestOptions
+const CaseStudies = async () => {
+  async function getData() {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/caseStudies`
     )
-      .then((response) => response.json())
-      .then((result) => {
-        setCaseStudiesData(result)
-      })
-      .catch
-      // (error) => console.error(error)
-      ()
-  }, [])
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+    return res.json()
+  }
+
+  const data = await getData()
 
   return (
     <section id="case-studies">
@@ -98,13 +34,12 @@ const CaseStudies = () => {
         <Spacer height={{ mobile: '3vh' }} />
 
         <div className={styles.caseStudiesPostsGroup}>
-          {caseStudiesData &&
-            caseStudiesData.data.map(
-              (postData, postIndex: number) => {
+          {data &&
+            data.res.data.map(
+              (postData: CardDataCaseStudies, postIndex: number) => {
                 const path = postData.attributes
                 const title = path.title
                 const description = path.description
-
                 const imgPath = path.image.data.attributes
 
                 return (
