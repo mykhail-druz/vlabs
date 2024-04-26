@@ -1,5 +1,5 @@
 const urlPathnames = {
-  BASE: '/',
+  BASE: '/#home',
   SERVICES_SECTION: '/#services',
   PORTFOLIO_SECTION: '/#portfolio',
   CASE_STUDIES_SECTION: '/#case-studies',

@@ -118,8 +118,6 @@ const Testimonials = () => {
           {testimonialsData && (
             <Swiper
               modules={[Pagination]}
-              spaceBetween={120}
-              slidesPerView={3}
               freeMode={true}
               pagination={{ clickable: true }}
               style={{

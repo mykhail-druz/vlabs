@@ -144,9 +144,13 @@ const Portfolio = () => {
             },
             768: {
               spaceBetween: 80,
-              slidesPerView: 3,
+              slidesPerView: 2,
             },
             1024: {
+              spaceBetween: 120,
+              slidesPerView: 3,
+            },
+            1440: {
               spaceBetween: 120,
               slidesPerView: 4,
             },

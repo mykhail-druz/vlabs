@@ -64,6 +64,7 @@
 
   @include desktopAndBeyondView() {
     height: 90px;
+    gap: 0 20px;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
@@ -84,11 +85,13 @@
   font-family: var(--font-roboto);
   font-size: 20px;
   letter-spacing: 0.1em;
+  transition: color 0.3s ease;
 
   @include desktopAndBeyondView() {
     width: auto;
-    padding: 0 10px;
-    color: $font-color-three;
+    text-wrap: nowrap;
+    padding: 0 0;
+    // color: $font-color-three;
   }
 }
 
@@ -99,10 +102,8 @@
   }
 }
 
-.navBar a:hover,
-.home p {
+.navBar a:hover {
   color: $font-color-two;
-  font-weight: 700;
 }
 
 #headerSidebarActive {
@@ -125,4 +126,8 @@
 
 #headerSidebarActive:checked ~ .linksContainer {
   right: 0;
+}
+
+.active {
+  color: $secondary-color;
 }

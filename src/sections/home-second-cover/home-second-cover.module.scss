@@ -10,13 +10,14 @@
   }
 
   @include desktopAndBeyondView() {
-    margin: 0 7%;
+    margin: 0 15%;
   }
 }
 
 .homeGridContainer {
   display: grid;
   row-gap: 4vh;
+  z-index: 10;
   grid-template-areas:
     'homeCoverImage'
     'homeTitle'
@@ -28,7 +29,7 @@
     grid-template-areas:
       'homeCoverImage homeTitle'
       'homeCoverImage homeParagraph';
-    column-gap: 1vw;
+    column-gap: 3vw;
     row-gap: unset;
   }
 }
@@ -46,18 +47,18 @@
 }
 
 .homeCoverImage img {
-  width: 307.76px;
-  height: 249.79px;
+  width: 257px;
+  height: 212px;
   border-radius: 21px;
 
   @include tabletAndBeyondView() {
-    width: 340px;
-    height: 322px;
+    width: 336px;
+    height: 282px;
   }
 
   @include desktopAndBeyondView() {
-    width: 501px;
-    height: 477.22px;
+    width: 377px;
+    height: 319px;
   }
 }
 
@@ -97,6 +98,10 @@
 
   @include tabletAndBeyondView() {
     text-align: left;
+  }
+
+  @include desktopAndBeyondView() {
+    margin-top: -5vh;
   }
 
   @media only screen and (max-width: 830px) {
