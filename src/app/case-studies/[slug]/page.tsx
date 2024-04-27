@@ -37,6 +37,8 @@ interface ParagraphData {
 //     }
 //   }
 // }
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'auto'
 interface CaseStudyPostProps {
   params: { slug: string }
 }

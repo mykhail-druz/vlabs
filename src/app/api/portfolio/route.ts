@@ -5,7 +5,7 @@ export async function GET() {
     const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/portfolios?populate=*`
     const requestOptions = {
       method: 'GET',
-      next: { revalidate: 10 },
+      // next: { revalidate: 10 },
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_KEY}`,
       },

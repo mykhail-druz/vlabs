@@ -13,6 +13,9 @@ import {
 import { Spacer } from '../components'
 import 'animate.css'
 
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'auto'
+
 export default async function Home() {
   const spacerHeights = {
     firstType: {
