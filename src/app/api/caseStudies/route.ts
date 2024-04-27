@@ -7,7 +7,7 @@ export async function GET() {
       method: 'GET',
       next: { revalidate: 10 },
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_KEY}`,
+        Authorization: `Bearer ${process.env.STRAPI_API_KEY}`,
       },
     }
     const response = await fetch(apiUrl, requestOptions)
