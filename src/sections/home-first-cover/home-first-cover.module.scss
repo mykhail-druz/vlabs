@@ -8,18 +8,20 @@
 
   @include tabletAndBeyondView() {
     margin: 0 5%;
+    padding: 0px 0px;
     z-index: 5;
   }
 
   @include desktopAndBeyondView() {
-    margin: 5% 10%;
+    margin: 0 15%;
+    padding: 0px 0px;
     z-index: 5;
   }
 }
 
 .homeGridContainer {
   display: grid;
-  row-gap: 3vh;
+  row-gap: unset;
   grid-template-areas:
     'homeCoverImage'
     'homeTitle'
@@ -48,14 +50,19 @@
 
 .homeParagraph {
   grid-area: homeParagraph;
-
+  margin-top: 5vh;
   @include desktopAndBeyondView() {
     width: 80%;
+    margin-top: -5vh;
   }
 }
 
 .homeContactButton {
   grid-area: homeContactButton;
+  margin-top: 5vh;
+  @include desktopAndBeyondView() {
+    margin-top: -5vh;
+  }
 }
 
 .homeCoverImage img {
@@ -85,14 +92,13 @@
   @include tabletAndBeyondView() {
     text-align: left;
     font-size: 63px;
-    line-height: 71px;
+    line-height: 60px;
   }
 
   @include desktopAndBeyondView() {
     text-align: left;
     font-size: 75px;
     line-height: 60px;
-    margin: 5% 0;
   }
 }
 

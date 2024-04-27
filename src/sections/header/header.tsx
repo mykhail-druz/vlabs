@@ -5,8 +5,40 @@ import { staticImageLinks } from '@/assets'
 import { Button, MotionDiv, Spacer } from '@/components'
 import Link from 'next/link'
 import urlPathnames from '@/urlPathnames'
+import { useEffect, useState } from 'react'
 
 const Header = () => {
+  const [activeLink, setActiveLink] = useState('')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionIds = [
+        '#testimonials',
+        '#case-studies',
+        '#portfolio',
+        '#services',
+        '#home',
+      ]
+
+      for (const sectionId of sectionIds) {
+        const section = document.querySelector(sectionId)
+        if (section) {
+          const isSectionVisible =
+            section.getBoundingClientRect().top <=
+            window.innerHeight * 0.5
+
+          if (isSectionVisible) {
+            setActiveLink(sectionId)
+            break // Once we find the active section, no need to check the rest
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <header className={styles.headerContent}>
       <MotionDiv
@@ -31,9 +63,10 @@ const Header = () => {
           className={styles.openSidebarButton}
         >
           <MotionDiv
-            initial={{ y: -50, opacity: 0 }}
+            initial={{ y: 0, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 1 }}
+            observeInView={true}
           >
             <Image
               src={staticImageLinks.HAMBURGER_MENU_ICON}
@@ -69,7 +102,6 @@ const Header = () => {
           />
 
           <Link
-            className={styles.home}
             href={urlPathnames.BASE}
             replace
             onClick={() => {
@@ -79,7 +111,11 @@ const Header = () => {
               if (checkbox) checkbox.checked = false
             }}
           >
-            <p>Home</p>
+            <p
+              className={activeLink === '#home' ? styles.active : ''}
+            >
+              Home
+            </p>
           </Link>
           <Link
             href={urlPathnames.SERVICES_SECTION}
@@ -91,10 +127,17 @@ const Header = () => {
               if (checkbox) checkbox.checked = false
             }}
           >
-            <p>Services</p>
+            <p
+              className={
+                activeLink === '#services' ? styles.active : ''
+              }
+            >
+              Services
+            </p>
           </Link>
           <Link
             href={urlPathnames.PORTFOLIO_SECTION}
+            replace
             onClick={() => {
               const checkbox = document.getElementById(
                 styles.headerSidebarActive
@@ -102,10 +145,17 @@ const Header = () => {
               if (checkbox) checkbox.checked = false
             }}
           >
-            <p>Portfolio</p>
+            <p
+              className={
+                activeLink === '#portfolio' ? styles.active : ''
+              }
+            >
+              Portfolio
+            </p>
           </Link>
           <Link
             href={urlPathnames.CASE_STUDIES_SECTION}
+            replace
             onClick={() => {
               const checkbox = document.getElementById(
                 styles.headerSidebarActive
@@ -113,10 +163,17 @@ const Header = () => {
               if (checkbox) checkbox.checked = false
             }}
           >
-            <p>Case studies</p>
+            <p
+              className={
+                activeLink === '#case-studies' ? styles.active : ''
+              }
+            >
+              Case studies
+            </p>
           </Link>
           <Link
             href={urlPathnames.TESTIMONIALS_SECTION}
+            replace
             onClick={() => {
               const checkbox = document.getElementById(
                 styles.headerSidebarActive
@@ -124,7 +181,13 @@ const Header = () => {
               if (checkbox) checkbox.checked = false
             }}
           >
-            <p>Testimonials</p>
+            <p
+              className={
+                activeLink === '#testimonials' ? styles.active : ''
+              }
+            >
+              Testimonials
+            </p>
           </Link>
 
           <Button

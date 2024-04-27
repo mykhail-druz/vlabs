@@ -17,23 +17,25 @@ export default async function Home() {
   const spacerHeights = {
     firstType: {
       mobile: '4vh',
-      tablet: '5vh',
-      desktop: '6vh',
+      tablet: '10vh',
+      desktop: '170px',
     },
     secondType: {
       mobile: '6vh',
+      desktop: '170px',
     },
     ThirdType: {
       mobile: '4vh',
-      desktop: '2vh',
+      desktop: '170px',
     },
     FourthType: {
       mobile: '5vh',
       tablet: '4vh',
-      desktop: '6vh',
+      desktop: '170px',
     },
     FifthType: {
       mobile: '5vh',
+      desktop: '170px',
     },
   }
 

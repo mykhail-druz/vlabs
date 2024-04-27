@@ -54,6 +54,7 @@
   line-height: 48px;
   letter-spacing: 0.05em;
   color: $font-color-one;
+  text-decoration: none;
 }
 
 .footerParagraph {
@@ -107,6 +108,7 @@
 
 .socialNetworkIconGroup {
   display: flex;
+  margin-top: -1vh;
   gap: 1.9em;
 }
 

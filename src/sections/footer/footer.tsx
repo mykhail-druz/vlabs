@@ -47,41 +47,49 @@ const Footer = () => {
           <div
             className={`${styles.socialNetworkIconGroup} ${styles.footerRightColumnElementTopAlignment}`}
           >
-            <Image
-              src={staticImageLinks.INSTAGRAM_ICON}
-              width={24}
-              height={24}
-              alt="social-network-instagram-icon"
-            />
-            <Image
-              src={staticImageLinks.FACEBOOK_ICON}
-              width={24}
-              height={24}
-              alt="social-network-facebook-icon"
-            />
-            <Image
-              src={staticImageLinks.LINKEDIN_ICON}
-              width={24}
-              height={24}
-              alt="social-network-linkedin-icon"
-            />
+            <a href="">
+              <Image
+                src={staticImageLinks.INSTAGRAM_ICON}
+                width={24}
+                height={24}
+                alt="social-network-instagram-icon"
+              />
+            </a>
+            <a href="">
+              <Image
+                src={staticImageLinks.FACEBOOK_ICON}
+                width={24}
+                height={24}
+                alt="social-network-facebook-icon"
+              />
+            </a>
+            <a href="">
+              <Image
+                src={staticImageLinks.LINKEDIN_ICON}
+                width={24}
+                height={24}
+                alt="social-network-linkedin-icon"
+              />
+            </a>
           </div>
 
-          <h1 className={styles.footerHeading}>Email us</h1>
+          <p className={styles.footerHeading}>Email us</p>
 
-          <h1
+          <a
+            href="mailto:hello@vlabs.com.au"
             className={`${styles.footerHeading} ${styles.footerRightColumnElementTopAlignment}`}
           >
             hello@vlabs.com.au
-          </h1>
+          </a>
 
-          <h1 className={styles.footerHeading}>Call us</h1>
+          <p className={styles.footerHeading}>Call us</p>
 
-          <h1
+          <a
+            href="tel:0426 818 653"
             className={`${styles.footerHeading} ${styles.footerRightColumnElementTopAlignment}`}
           >
             0426 818 653
-          </h1>
+          </a>
         </div>
       </div>
 

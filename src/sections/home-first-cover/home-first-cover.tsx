@@ -5,7 +5,7 @@ import { Button, MotionDiv } from '@/components'
 
 const HomeFirstCover = () => {
   return (
-    <section>
+    <section id="home">
       <div className={styles.homeContent}>
         <div className={styles.circle}></div>
         <div className={styles.homeGridContainer}>
